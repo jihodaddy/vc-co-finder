@@ -188,25 +188,97 @@ THE differentiator — best-in-class 패시트 다중 조건 검색.
 
 ## Traceability
 
-(이 표는 ROADMAP.md 생성 후 채워집니다 — roadmapper 에이전트가 채움)
+Mapped by `gsd-roadmapper` agent on 2026-04-20 from ROADMAP.md.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01..14 | TBD | Pending |
-| TRUST-01..07 | TBD | Pending |
-| PROF-01..11 | TBD | Pending |
-| SRCH-01..13 | TBD | Pending |
-| USER-01..08 | TBD | Pending |
-| COMP-01..06 | TBD | Pending |
-| DATA-01..11 | TBD | Pending |
-| ADMIN-01..06 | TBD | Pending |
-| LAUNCH-01..05 | TBD | Pending |
+| FOUND-01 | Phase 1 | Pending |
+| FOUND-02 | Phase 1 | Pending |
+| FOUND-03 | Phase 1 | Pending |
+| FOUND-04 | Phase 1 | Pending |
+| FOUND-05 | Phase 1 | Pending |
+| FOUND-06 | Phase 1 | Pending |
+| FOUND-07 | Phase 1 | Pending |
+| FOUND-08 | Phase 1 | Pending |
+| FOUND-09 | Phase 1 | Pending |
+| FOUND-10 | Phase 1 | Pending |
+| FOUND-11 | Phase 1 | Pending |
+| FOUND-12 | Phase 1 | Pending |
+| FOUND-13 | Phase 1 | Pending |
+| FOUND-14 | Phase 1 | Pending |
+| TRUST-01 | Phase 1 | Pending |
+| TRUST-02 | Phase 1 | Pending |
+| TRUST-03 | Phase 1 | Pending |
+| TRUST-04 | Phase 2 | Pending |
+| TRUST-05 | Phase 2 | Pending |
+| TRUST-06 | Phase 1 | Pending |
+| TRUST-07 | Phase 1 | Pending |
+| PROF-01 | Phase 2 | Pending |
+| PROF-02 | Phase 2 | Pending |
+| PROF-03 | Phase 2 | Pending |
+| PROF-04 | Phase 6 | Pending |
+| PROF-05 | Phase 6 | Pending |
+| PROF-06 | Phase 6 | Pending |
+| PROF-07 | Phase 7 | Pending |
+| PROF-08 | Phase 2 | Pending |
+| PROF-09 | Phase 8 | Pending |
+| PROF-10 | Phase 2 | Pending |
+| PROF-11 | Phase 2 | Pending |
+| SRCH-01 | Phase 3 | Pending |
+| SRCH-02 | Phase 3 | Pending |
+| SRCH-03 | Phase 3 | Pending |
+| SRCH-04 | Phase 3 | Pending |
+| SRCH-05 | Phase 3 | Pending |
+| SRCH-06 | Phase 3 | Pending |
+| SRCH-07 | Phase 3 | Pending |
+| SRCH-08 | Phase 3 | Pending |
+| SRCH-09 | Phase 3 | Pending |
+| SRCH-10 | Phase 3 | Pending |
+| SRCH-11 | Phase 3 | Pending |
+| SRCH-12 | Phase 3 | Pending |
+| SRCH-13 | Phase 3 | Pending |
+| USER-01 | Phase 4c | Pending |
+| USER-02 | Phase 4c | Pending |
+| USER-03 | Phase 4c | Pending |
+| USER-04 | Phase 4c | Pending |
+| USER-05 | Phase 7 | Pending |
+| USER-06 | Phase 7 | Pending |
+| USER-07 | Phase 7 | Pending |
+| USER-08 | Phase 5 | Pending |
+| COMP-01 | Phase 6 | Pending |
+| COMP-02 | Phase 6 | Pending |
+| COMP-03 | Phase 6 | Pending |
+| COMP-04 | Phase 6 | Pending |
+| COMP-05 | Phase 8 | Pending |
+| COMP-06 | Phase 8 | Pending |
+| DATA-01 | Phase 4a | Pending |
+| DATA-02 | Phase 4a | Pending |
+| DATA-03 | Phase 4a | Pending |
+| DATA-04 | Phase 4a | Pending |
+| DATA-05 | Phase 5 | Pending |
+| DATA-06 | Phase 7 | Pending |
+| DATA-07 | Phase 4b | Pending |
+| DATA-08 | Phase 4a | Pending |
+| DATA-09 | Phase 4a | Pending |
+| DATA-10 | Phase 4a | Pending |
+| DATA-11 | Phase 4a | Pending |
+| ADMIN-01 | Phase 4b | Pending |
+| ADMIN-02 | Phase 4b | Pending |
+| ADMIN-03 | Phase 4b | Pending |
+| ADMIN-04 | Phase 4b | Pending |
+| ADMIN-05 | Phase 4b | Pending |
+| ADMIN-06 | Phase 4b | Pending |
+| LAUNCH-01 | Phase 8 | Pending |
+| LAUNCH-02 | Phase 8 | Pending |
+| LAUNCH-03 | Phase 8 | Pending |
+| LAUNCH-04 | Phase 8 | Pending |
+| LAUNCH-05 | Phase 8 | Pending |
 
 **Coverage:**
-- v1 requirements: 71 total (14 FOUND + 7 TRUST + 11 PROF + 13 SRCH + 8 USER + 6 COMP + 11 DATA + 6 ADMIN + 5 LAUNCH — note: counts will be re-verified after roadmapper traceability fill)
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 71 ⚠️ (resolved when ROADMAP.md is created)
+- v1 requirements total: **81** (14 FOUND + 7 TRUST + 11 PROF + 13 SRCH + 8 USER + 6 COMP + 11 DATA + 6 ADMIN + 5 LAUNCH — counts re-verified during roadmap creation)
+- Mapped to phases: **81** (100%)
+- Unmapped: **0** ✓
 
 ---
 *Requirements defined: 2026-04-20*
-*Last updated: 2026-04-20 after initial definition*
+*Last updated: 2026-04-20 — Traceability filled by gsd-roadmapper after ROADMAP.md creation*
