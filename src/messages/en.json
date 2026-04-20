@@ -8,5 +8,18 @@
     "login": "",
     "signOut": "",
     "signedInAs": ""
+  },
+  "login": {
+    "title": "",
+    "google": "",
+    "kakao": "",
+    "kakaoPending": "",
+    "kakaoDisabledTooltip": "",
+    "oauthError": "",
+    "errorPrefix": "",
+    "pipa": {
+      "consentText": "",
+      "privacyLink": ""
+    }
   }
 }
