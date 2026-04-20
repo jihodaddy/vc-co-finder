@@ -48,3 +48,7 @@ next-env.d.ts
 
 # turbo
 .turbo
+
+# supabase (local CLI state)
+supabase/.temp/
+supabase/.branches/
