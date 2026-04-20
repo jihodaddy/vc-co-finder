@@ -46,7 +46,7 @@
 
 **Plans**: 8 plans (6 waves)
 - [x] 01-01-PLAN.md — Bootstrap Next.js 15.5 + TS + Tailwind v4 + shadcn/Radix + @supabase/ssr + Drizzle + next-intl + route groups (wave 1)
-- [ ] 01-02-PLAN.md — Canonical schema: 13 tables + ENUMs + currency triple + staging + audit_log function + GIN/tsvector seeds (wave 2)
+- [x] 01-02-PLAN.md — Canonical schema: 13 tables + ENUMs + currency triple + staging + audit_log function + GIN/tsvector seeds (wave 2)
 - [ ] 01-03-PLAN.md — RLS policies (canonical + user-scoped) + audit triggers + admin 404-guard (wave 3)
 - [ ] 01-04-PLAN.md — Google + Kakao OAuth via @supabase/ssr + PIPA consent + Kakao Business app blocker (wave 4)
 - [ ] 01-05-PLAN.md — Landing + /sources + /privacy (PIPA) + /terms + admin stub + disclaimer + cookie notice (wave 5)
