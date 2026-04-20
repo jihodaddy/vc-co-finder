@@ -3,5 +3,10 @@
     "appName": "VC Co-Finder",
     "loading": "",
     "error": ""
+  },
+  "auth": {
+    "login": "",
+    "signOut": "",
+    "signedInAs": ""
   }
 }

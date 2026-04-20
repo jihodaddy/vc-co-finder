@@ -3,5 +3,10 @@
     "appName": "VC Co-Finder",
     "loading": "로딩 중...",
     "error": "오류가 발생했습니다"
+  },
+  "auth": {
+    "login": "로그인",
+    "signOut": "로그아웃",
+    "signedInAs": "로그인 계정"
   }
 }
