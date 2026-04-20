@@ -44,7 +44,15 @@
 
 **Pitfalls addressed**: 1 (scraping policy baked in by data-source registry), 2 (last_verified_at separate), 3 (per-fact provenance schema), 5 (currency triple), 7 (PIPA + DSAR + CPO), 8 (alias + relation tables), 9 (initial GIN index strategy seeded), 11 (storage budget), 12 (Vercel commercial decision documented), 14 (audit_log from day 1)
 
-**Plans**: TBD
+**Plans**: 8 plans (6 waves)
+- [ ] 01-01-PLAN.md — Bootstrap Next.js 15.5 + TS + Tailwind v4 + shadcn/Radix + @supabase/ssr + Drizzle + next-intl + route groups (wave 1)
+- [ ] 01-02-PLAN.md — Canonical schema: 13 tables + ENUMs + currency triple + staging + audit_log function + GIN/tsvector seeds (wave 2)
+- [ ] 01-03-PLAN.md — RLS policies (canonical + user-scoped) + audit triggers + admin 404-guard (wave 3)
+- [ ] 01-04-PLAN.md — Google + Kakao OAuth via @supabase/ssr + PIPA consent + Kakao Business app blocker (wave 4)
+- [ ] 01-05-PLAN.md — Landing + /sources + /privacy (PIPA) + /terms + admin stub + disclaimer + cookie notice (wave 5)
+- [ ] 01-06-PLAN.md — DSAR endpoint + email verification + Resend + CPO forwarding alias (wave 5)
+- [ ] 01-07-PLAN.md — Sentry (client/server/edge) + PII scrubbing + Vercel Analytics + heartbeat + storage monitor (wave 5)
+- [ ] 01-08-PLAN.md — [BLOCKING] supabase db push + Vercel deploy + end-to-end smoke tests (wave 6)
 
 ---
 
