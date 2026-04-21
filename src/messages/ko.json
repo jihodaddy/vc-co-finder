@@ -131,6 +131,83 @@
     "errorPrefix": "접수 실패",
     "rateLimitMessage": "요청이 너무 잦습니다. 잠시 후 다시 시도해 주십시오."
   },
+  "profile": {
+    "hero": {
+      "srHeading": "회사 개요",
+      "websiteCta": "웹사이트 방문",
+      "logoAltSuffix": " 로고",
+      "hqLabel": "HQ",
+      "websiteLabel": "웹사이트"
+    },
+    "aliases": {
+      "heading": "별칭",
+      "empty": "등록된 별칭이 없습니다"
+    },
+    "rounds": {
+      "heading": "투자 라운드",
+      "empty": "공시된 투자 라운드가 없습니다",
+      "undisclosed": "비공개",
+      "columns": {
+        "stage": "단계",
+        "announcedAt": "발표일",
+        "amount": "금액",
+        "investors": "투자자"
+      },
+      "tableCaption": "투자 라운드 목록",
+      "leadAriaLabel": "리드 투자자",
+      "participantAriaLabel": "참여 투자자"
+    },
+    "identifiers": {
+      "heading": "식별자",
+      "empty": "등록된 식별자가 없습니다",
+      "kind": {
+        "dart_corp_code": "DART 고유번호",
+        "business_registration_number": "사업자등록번호",
+        "corporate_registration_number": "법인등록번호",
+        "website_domain": "도메인"
+      }
+    },
+    "source": {
+      "badge": "출처: {sourceLabel} · {date} 업데이트",
+      "type": {
+        "dart": "DART",
+        "manual": "수동 큐레이션",
+        "user_submission": "사용자 제보",
+        "press_release": "보도자료",
+        "vc_portfolio": "VC 포트폴리오",
+        "news_mention": "뉴스 멘션",
+        "kstartup": "K-Startup"
+      }
+    },
+    "freshness": {
+      "fresh": "신선",
+      "stale": "확인 권장",
+      "expired": "오래된 정보"
+    },
+    "stage": {
+      "pre_a": "Pre-A",
+      "seed": "Seed",
+      "series_a": "시리즈 A",
+      "series_b": "시리즈 B",
+      "series_c": "시리즈 C",
+      "series_d": "시리즈 D",
+      "bridge": "Bridge",
+      "safe": "SAFE",
+      "convertible_note": "전환사채",
+      "grant": "지원금",
+      "undisclosed": "비공개"
+    },
+    "error": {
+      "heading": "기업 정보를 불러오지 못했습니다",
+      "body": "잠시 후 다시 시도해 주세요. 문제가 지속되면 /sources 페이지를 확인하세요.",
+      "retryCta": "다시 시도"
+    },
+    "notFound": {
+      "heading": "요청하신 기업을 찾을 수 없습니다",
+      "body": "검색 페이지에서 다른 기업을 찾아보세요.",
+      "searchCta": "검색으로 돌아가기"
+    }
+  },
   "privacy": {
     "title": "개인정보처리방침",
     "lastUpdated": "최종 개정: 2026-04-20",

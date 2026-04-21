@@ -131,6 +131,83 @@
     "errorPrefix": "",
     "rateLimitMessage": ""
   },
+  "profile": {
+    "hero": {
+      "srHeading": "",
+      "websiteCta": "",
+      "logoAltSuffix": "",
+      "hqLabel": "",
+      "websiteLabel": ""
+    },
+    "aliases": {
+      "heading": "",
+      "empty": ""
+    },
+    "rounds": {
+      "heading": "",
+      "empty": "",
+      "undisclosed": "",
+      "columns": {
+        "stage": "",
+        "announcedAt": "",
+        "amount": "",
+        "investors": ""
+      },
+      "tableCaption": "",
+      "leadAriaLabel": "",
+      "participantAriaLabel": ""
+    },
+    "identifiers": {
+      "heading": "",
+      "empty": "",
+      "kind": {
+        "dart_corp_code": "",
+        "business_registration_number": "",
+        "corporate_registration_number": "",
+        "website_domain": ""
+      }
+    },
+    "source": {
+      "badge": "",
+      "type": {
+        "dart": "",
+        "manual": "",
+        "user_submission": "",
+        "press_release": "",
+        "vc_portfolio": "",
+        "news_mention": "",
+        "kstartup": ""
+      }
+    },
+    "freshness": {
+      "fresh": "",
+      "stale": "",
+      "expired": ""
+    },
+    "stage": {
+      "pre_a": "",
+      "seed": "",
+      "series_a": "",
+      "series_b": "",
+      "series_c": "",
+      "series_d": "",
+      "bridge": "",
+      "safe": "",
+      "convertible_note": "",
+      "grant": "",
+      "undisclosed": ""
+    },
+    "error": {
+      "heading": "",
+      "body": "",
+      "retryCta": ""
+    },
+    "notFound": {
+      "heading": "",
+      "body": "",
+      "searchCta": ""
+    }
+  },
   "privacy": {
     "title": "",
     "lastUpdated": "",
