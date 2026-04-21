@@ -49,10 +49,10 @@
 - [x] 01-02-PLAN.md — Canonical schema: 13 tables + ENUMs + currency triple + staging + audit_log function + GIN/tsvector seeds (wave 2)
 - [x] 01-03-PLAN.md — RLS policies (canonical + user-scoped) + audit triggers + admin 404-guard (wave 3)
 - [x] 01-04-PLAN.md — Google + Kakao OAuth via @supabase/ssr + PIPA consent + Kakao Business app blocker (wave 4)
-- [ ] 01-05-PLAN.md — Landing + /sources + /privacy (PIPA) + /terms + admin stub + disclaimer + cookie notice (wave 5)
-- [ ] 01-06-PLAN.md — DSAR endpoint + email verification + Resend + CPO forwarding alias (wave 5)
-- [ ] 01-07-PLAN.md — Sentry (client/server/edge) + PII scrubbing + Vercel Analytics + heartbeat + storage monitor (wave 5)
-- [ ] 01-08-PLAN.md — [BLOCKING] supabase db push + Vercel deploy + end-to-end smoke tests (wave 6)
+- [x] 01-05-PLAN.md — Landing + /sources + /privacy (PIPA) + /terms + admin stub + disclaimer + cookie notice (wave 5)
+- [x] 01-06-PLAN.md — DSAR endpoint + email verification + Resend + CPO forwarding alias (wave 5)
+- [x] 01-07-PLAN.md — Sentry (client/server/edge) + PII scrubbing + Vercel Analytics + heartbeat + storage monitor (wave 5)
+- [x] 01-08-PLAN.md — [BLOCKING] supabase db push + Vercel deploy + end-to-end smoke tests (wave 6)
 
 ---
 
