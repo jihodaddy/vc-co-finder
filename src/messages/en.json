@@ -21,5 +21,139 @@
       "consentText": "",
       "privacyLink": ""
     }
+  },
+  "landing": {
+    "hero": {
+      "headline": "",
+      "subhead": "",
+      "ctaPrimary": "",
+      "ctaSecondary": ""
+    },
+    "valueProps": {
+      "faceted": {
+        "title": "",
+        "body": ""
+      },
+      "provenance": {
+        "title": "",
+        "body": ""
+      },
+      "open": {
+        "title": "",
+        "body": ""
+      }
+    },
+    "status": ""
+  },
+  "header": {
+    "nav": {
+      "sources": "",
+      "privacy": "",
+      "terms": ""
+    }
+  },
+  "footer": {
+    "disclaimerText": "",
+    "links": {
+      "sources": "",
+      "privacy": "",
+      "terms": "",
+      "dsar": ""
+    },
+    "copyright": "",
+    "version": ""
+  },
+  "cookieNotice": {
+    "message": "",
+    "accept": "",
+    "privacyLink": ""
+  },
+  "sources": {
+    "title": "",
+    "intro": "",
+    "activeSection": "",
+    "plannedSection": "",
+    "manualTitle": "",
+    "manualStatus": "",
+    "manualLicense": "",
+    "dartTitle": "",
+    "dartStatus": "",
+    "dartLicense": "",
+    "kstartupTitle": "",
+    "kstartupStatus": "",
+    "kstartupLicense": "",
+    "userSubmissionTitle": "",
+    "userSubmissionStatus": "",
+    "userSubmissionLicense": "",
+    "vcPortfolioTitle": "",
+    "vcPortfolioStatus": "",
+    "vcPortfolioLicense": "",
+    "newsTitle": "",
+    "newsStatus": "",
+    "newsLicense": "",
+    "excludedTitle": "",
+    "excludedBody": ""
+  },
+  "terms": {
+    "title": "",
+    "lastUpdated": "",
+    "intro": "",
+    "dataAccuracyTitle": "",
+    "dataAccuracyBody": "",
+    "noWarrantyTitle": "",
+    "noWarrantyBody": "",
+    "scrapingTitle": "",
+    "scrapingBody": "",
+    "contactTitle": "",
+    "contactBody": ""
+  },
+  "admin": {
+    "stubTitle": "",
+    "stubBody": ""
+  },
+  "dsar": {
+    "title": "",
+    "intro": "",
+    "nameLabel": "",
+    "emailLabel": "",
+    "phoneLabel": "",
+    "typeLabel": "",
+    "typeAccess": "",
+    "typeRectification": "",
+    "typeErasure": "",
+    "typeRestriction": "",
+    "descriptionLabel": "",
+    "descriptionPlaceholder": "",
+    "evidenceLabel": "",
+    "submit": "",
+    "successTitle": "",
+    "successBody": "",
+    "errorPrefix": "",
+    "rateLimitMessage": ""
+  },
+  "privacy": {
+    "title": "",
+    "lastUpdated": "",
+    "preambleSection": "",
+    "preambleBody": "",
+    "itemsSection": "",
+    "itemsBody": "",
+    "purposeSection": "",
+    "purposeBody": "",
+    "retentionSection": "",
+    "retentionBody": "",
+    "thirdPartySection": "",
+    "thirdPartyBody": "",
+    "intlTransferSection": "",
+    "intlTransferBody": "",
+    "rightsSection": "",
+    "rightsBody": "",
+    "cookiesSection": "",
+    "cookiesBody": "",
+    "cpoSection": "",
+    "cpoBody": "",
+    "changesSection": "",
+    "changesBody": "",
+    "disclaimerNote": ""
   }
 }

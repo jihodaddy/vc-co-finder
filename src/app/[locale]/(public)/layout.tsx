@@ -1,11 +1,22 @@
 import type { ReactNode } from 'react';
+import { Header } from '@/components/site/header';
+import { Footer } from '@/components/site/footer';
+import { CookieNotice } from '@/components/site/cookie-notice';
 
 /**
  * Public route group — anonymous users can read everything underneath.
  *
- * Plan 05 adds the header/footer chrome; Plan 01 keeps this a passthrough
- * so landing/login/privacy can be added incrementally without refactors.
+ * Chrome (header/footer + cookie notice) lives here so every public page
+ * picks it up automatically. Client-side CookieNotice mounts once per
+ * (public) subtree and persists its dismissal in localStorage.
  */
 export default function PublicLayout({ children }: { children: ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <Header />
+      <div className="min-h-[60vh]">{children}</div>
+      <Footer />
+      <CookieNotice />
+    </>
+  );
 }

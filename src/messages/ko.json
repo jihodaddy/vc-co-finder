@@ -21,5 +21,139 @@
       "consentText": "개인정보 수집 및 이용에 동의합니다.",
       "privacyLink": "개인정보처리방침 보기"
     }
+  },
+  "landing": {
+    "hero": {
+      "headline": "한국·아시아 스타트업 검색·비교 인텔리전스",
+      "subhead": "5천~1만 스타트업을 섹터·라운드·지역·인원 조건으로 30초 안에 찾습니다. 모든 데이터는 출처와 마지막 업데이트 시각을 명시합니다.",
+      "ctaPrimary": "로그인하고 시작하기",
+      "ctaSecondary": "데이터 출처 보기"
+    },
+    "valueProps": {
+      "faceted": {
+        "title": "다중 조건 스마트 검색",
+        "body": "섹터, 라운드, 지역, 직원 수, 누적 투자액을 동시에 좁혀가며 대상을 특정합니다."
+      },
+      "provenance": {
+        "title": "팩트마다 출처 표시",
+        "body": "모든 수치에 출처(DART·수동 큐레이션·사용자 제보)와 신선도 표시를 답니다."
+      },
+      "open": {
+        "title": "무료 공개, 링크 공유 가능",
+        "body": "검색 결과 URL을 그대로 공유하면 동일한 필터 상태로 복원됩니다."
+      }
+    },
+    "status": "v1 준비 단계 — 핵심 스키마와 컴플라이언스 기반이 구축되었습니다."
+  },
+  "header": {
+    "nav": {
+      "sources": "데이터 출처",
+      "privacy": "개인정보처리방침",
+      "terms": "이용약관"
+    }
+  },
+  "footer": {
+    "disclaimerText": "본 서비스는 데이터의 완전성·정확성을 보장하지 않으며, 투자·의사결정의 근거로 단독 사용해서는 안 됩니다. 모든 수치는 표시된 출처와 마지막 업데이트 시각을 확인 후 활용해 주십시오.",
+    "links": {
+      "sources": "데이터 출처",
+      "privacy": "개인정보처리방침",
+      "terms": "이용약관",
+      "dsar": "개인정보 열람·삭제 요청"
+    },
+    "copyright": "© {year} VC Co-Finder",
+    "version": "v1 Phase 1"
+  },
+  "cookieNotice": {
+    "message": "로그인 세션 유지를 위해 필수 쿠키를 사용합니다. 마케팅 목적의 쿠키는 사용하지 않습니다.",
+    "accept": "확인",
+    "privacyLink": "자세히 보기"
+  },
+  "sources": {
+    "title": "데이터 출처",
+    "intro": "VC Co-Finder는 아래 출처에서 수집한 사실을 제공하며, 각 팩트 옆에 출처와 최종 업데이트 시각을 명시합니다.",
+    "activeSection": "현재 활성 출처",
+    "plannedSection": "예정된 출처",
+    "manualTitle": "수동 큐레이션",
+    "manualStatus": "활성 (Phase 2 시드)",
+    "manualLicense": "내부 리서치 · 출처 링크 명시",
+    "dartTitle": "DART 전자공시시스템 Open API",
+    "dartStatus": "연동 예정 (Phase 4a)",
+    "dartLicense": "공공데이터 · 금융감독원 이용약관 준수",
+    "kstartupTitle": "K-Startup / TIPS 공개 명단",
+    "kstartupStatus": "연동 예정 (Phase 5)",
+    "kstartupLicense": "공공데이터",
+    "userSubmissionTitle": "사용자 제보",
+    "userSubmissionStatus": "연동 예정 (Phase 5)",
+    "userSubmissionLicense": "제출 시 출처 URL 필수 · 관리자 검토",
+    "vcPortfolioTitle": "VC 포트폴리오 페이지",
+    "vcPortfolioStatus": "연동 예정 (Phase 5)",
+    "vcPortfolioLicense": "robots.txt 준수 · 1 req/sec 레이트 제한",
+    "newsTitle": "한국 테크 미디어 RSS",
+    "newsStatus": "연동 예정 (Phase 7)",
+    "newsLicense": "외부 링크아웃 전용 · 본문 저장 없음",
+    "excludedTitle": "수집하지 않는 출처",
+    "excludedBody": "더브이씨(thevc.kr)는 이용약관상 스크래핑을 허용하지 않아 데이터 소스로 사용하지 않습니다."
+  },
+  "terms": {
+    "title": "이용약관",
+    "lastUpdated": "최종 개정: 2026-04-20",
+    "intro": "본 약관은 VC Co-Finder(이하 '서비스')의 이용 조건을 규정합니다.",
+    "dataAccuracyTitle": "1. 데이터 정확성",
+    "dataAccuracyBody": "서비스는 DART, 공공데이터, 사용자 제보, 수동 큐레이션 등 복수 출처에서 수집한 사실을 제공하나, 완전성·정확성·적시성을 보장하지 않습니다. 모든 수치는 제시된 출처와 마지막 업데이트 시각을 확인 후 활용해 주십시오.",
+    "noWarrantyTitle": "2. 책임 제한",
+    "noWarrantyBody": "서비스는 투자·고용·법률·세무 결정의 근거가 아닙니다. 서비스의 정보에 근거한 의사결정으로 인해 발생한 손실에 대해 당사는 책임지지 않습니다.",
+    "scrapingTitle": "3. 재배포 및 데이터 마이닝 제한",
+    "scrapingBody": "서비스 데이터의 대량 자동 수집(스크래핑·크롤링·캐싱)을 금지합니다. 데이터 제휴 및 상업적 사용은 별도 서면 합의 시에만 허용됩니다.",
+    "contactTitle": "4. 문의 및 분쟁",
+    "contactBody": "약관 및 분쟁 관련 문의는 개인정보처리방침에 기재된 연락처로 접수해 주십시오. 본 약관은 대한민국 법령을 준거법으로 합니다."
+  },
+  "admin": {
+    "stubTitle": "관리자",
+    "stubBody": "관리자 UI는 Phase 4b에서 구축됩니다."
+  },
+  "dsar": {
+    "title": "개인정보 열람·정정·삭제·처리정지 요청",
+    "intro": "개인정보보호법 및 GDPR에 따라 본인의 개인정보에 대한 열람·정정·삭제·처리정지를 요청할 수 있습니다. 요청 접수 후 10일 이내 확인, 30일 이내 처리 완료를 목표로 합니다.",
+    "nameLabel": "성명",
+    "emailLabel": "이메일 (검증 발송)",
+    "phoneLabel": "연락처 (선택)",
+    "typeLabel": "요청 유형",
+    "typeAccess": "열람",
+    "typeRectification": "정정",
+    "typeErasure": "삭제",
+    "typeRestriction": "처리정지",
+    "descriptionLabel": "요청 내용",
+    "descriptionPlaceholder": "요청 대상 개인정보 항목과 구체적 사유를 기재해 주십시오 (최대 5,000자).",
+    "evidenceLabel": "증빙 URL (선택)",
+    "submit": "요청 접수",
+    "successTitle": "접수되었습니다",
+    "successBody": "입력하신 이메일로 검증 링크를 발송했습니다. 링크 클릭 후 처리가 시작됩니다.",
+    "errorPrefix": "접수 실패",
+    "rateLimitMessage": "요청이 너무 잦습니다. 잠시 후 다시 시도해 주십시오."
+  },
+  "privacy": {
+    "title": "개인정보처리방침",
+    "lastUpdated": "최종 개정: 2026-04-20",
+    "preambleSection": "전문",
+    "preambleBody": "VC Co-Finder(이하 '서비스')는 이용자의 개인정보를 중요하게 생각하며, 개인정보보호법 및 관련 법령을 준수하여 이용자의 권익을 보호합니다. 본 방침은 서비스가 처리하는 개인정보의 항목, 목적, 보유 기간, 이용자의 권리 등을 안내합니다.",
+    "itemsSection": "1. 수집하는 개인정보 항목",
+    "itemsBody": "가. 회원가입 시 (Google/Kakao 소셜 로그인): 이메일, 이름(표시명), 프로필 이미지 URL, 소셜 로그인 식별자. 나. 서비스 이용 시: 쿠키 기반 세션 식별자, IP 주소(이상 탐지 목적), User-Agent. 다. 선택 수집: 사용자 수정 제안 시 제안자 표시명, 사용자 정보 수정 요청 시 성명·이메일·연락처.",
+    "purposeSection": "2. 개인정보 이용 목적",
+    "purposeBody": "가. 회원 인증·세션 유지. 나. 이용자별 워치리스트·저장 검색 제공. 다. 이용자 제보 출처 추적 및 관리자 검토. 라. 이상 접근 탐지 및 보안. 마. 법령 준수를 위한 기록 보존.",
+    "retentionSection": "3. 보유 기간",
+    "retentionBody": "가. 회원 탈퇴 시 지체 없이 파기 (단, 법령상 보존 기간이 있는 경우 해당 기간 동안 분리 보관). 나. 감사 로그(audit_log)는 내부 감사 목적으로 5년간 보존 후 파기. 다. DSAR 요청 기록은 처리 완료 후 3년간 보존.",
+    "thirdPartySection": "4. 제3자 제공 및 처리 위탁",
+    "thirdPartyBody": "서비스는 개인정보를 제3자에게 제공하지 않습니다. 다음 처리 위탁을 운영합니다: (1) Supabase Inc. — 인증·데이터베이스·파일 저장 (위탁 국가: 미국/EU, SCC 체결). (2) Vercel Inc. — 웹 호스팅·CDN (위탁 국가: 미국). (3) Resend Inc. — 이메일 발송 (위탁 국가: 미국).",
+    "intlTransferSection": "5. 국외 이전",
+    "intlTransferBody": "상기 위탁으로 인해 개인정보는 미국 및 EU 리전에 저장·처리됩니다. 각 처리자와 표준계약조항(SCC) 또는 동등한 개인정보 보호 조치를 체결하였습니다.",
+    "rightsSection": "6. 이용자의 권리",
+    "rightsBody": "이용자는 언제든지 개인정보 열람·정정·삭제·처리정지를 요청할 수 있습니다. 요청은 [/ko/contact/dsar](/ko/contact/dsar) 페이지를 통해 접수해 주십시오. 접수 후 10일 이내 확인, 30일 이내 처리 완료를 목표로 합니다.",
+    "cookiesSection": "7. 쿠키 처리",
+    "cookiesBody": "서비스는 로그인 세션 유지를 위한 필수 쿠키만 사용합니다. 마케팅·광고 목적의 쿠키는 사용하지 않습니다. 이용자는 브라우저 설정에서 쿠키 저장을 거부할 수 있으나, 이 경우 로그인이 불가능할 수 있습니다.",
+    "cpoSection": "8. 개인정보 보호책임자 (CPO)",
+    "cpoBody": "개인정보 보호책임자: 프로젝트 운영자 (개인). 연락처: privacy@[도메인]. 본 이메일은 전용 alias이며, 이용자 문의는 최우선으로 처리됩니다.",
+    "changesSection": "9. 방침 변경",
+    "changesBody": "본 방침은 법령·정책 변경 시 개정될 수 있으며, 주요 변경 시 서비스 내 공지 후 7일 경과 시 효력이 발생합니다.",
+    "disclaimerNote": "본 방침은 KISA 표준 개인정보처리방침을 기반으로 서비스 실태에 맞게 작성되었습니다."
   }
 }
