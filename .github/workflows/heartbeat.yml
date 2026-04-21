@@ -1,0 +1,39 @@
+name: Free-tier Heartbeat
+
+# D-02.4 — Supabase free-tier auto-pauses after 7 days of inactivity. Ping
+# the deployed /api/health every 6 days so the pause never fires.
+
+on:
+  schedule:
+    # Every 6 days at 03:00 UTC (12:00 KST).
+    - cron: '0 3 */6 * *'
+  workflow_dispatch: {}
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping /api/health with DB touch
+        env:
+          VERCEL_URL: ${{ vars.VERCEL_HEALTH_URL }}
+          HEARTBEAT_SECRET: ${{ secrets.HEARTBEAT_SECRET }}
+        run: |
+          if [ -z "$VERCEL_URL" ]; then
+            echo "VERCEL_HEALTH_URL repository variable is not set. Skipping."
+            exit 0
+          fi
+          RESPONSE=$(curl -sS -o /tmp/body.json -w "%{http_code}" \
+            -H "x-heartbeat-secret: $HEARTBEAT_SECRET" \
+            "$VERCEL_URL/api/health")
+          echo "HTTP $RESPONSE"
+          cat /tmp/body.json
+          echo
+          if [ "$RESPONSE" != "200" ]; then
+            echo "Heartbeat failed with HTTP $RESPONSE"
+            exit 1
+          fi
+          if ! grep -q '"dbReachable":true' /tmp/body.json; then
+            echo "DB not reachable — auto-pause may be imminent"
+            exit 1
+          fi
+          echo "Heartbeat OK"

@@ -27,6 +27,6 @@ export const config = {
     // Skip Next.js internals, static assets, and API routes that don't need
     // i18n or auth refresh (heartbeat + revalidate endpoints authenticate
     // themselves via shared secrets — see threat T-01-04).
-    '/((?!_next/static|_next/image|favicon.ico|api/health|api/revalidate|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|api/health|api/storage-check|api/revalidate|monitoring|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 };

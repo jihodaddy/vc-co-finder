@@ -1,0 +1,39 @@
+name: Storage Budget Monitor
+
+# PITFALLS #11 — Supabase free tier ceiling is 500MB DB. Alert at 70%
+# so we have runway to either prune data or upgrade to Pro before the
+# project gets read-only.
+
+on:
+  schedule:
+    - cron: '0 15 * * *' # Daily 15:00 UTC = 00:00 KST
+  workflow_dispatch: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query Supabase DB size via /api/storage-check
+        env:
+          VERCEL_URL: ${{ vars.VERCEL_HEALTH_URL }}
+          HEARTBEAT_SECRET: ${{ secrets.HEARTBEAT_SECRET }}
+        run: |
+          if [ -z "$VERCEL_URL" ]; then
+            echo "VERCEL_HEALTH_URL not set; skipping."
+            exit 0
+          fi
+          RESPONSE=$(curl -sS -o /tmp/body.json -w "%{http_code}" \
+            -H "x-heartbeat-secret: $HEARTBEAT_SECRET" \
+            "$VERCEL_URL/api/storage-check")
+          echo "HTTP $RESPONSE"
+          cat /tmp/body.json
+          echo
+          if [ "$RESPONSE" != "200" ]; then
+            echo "Storage check endpoint failed"
+            exit 1
+          fi
+          if grep -q '"warn":true' /tmp/body.json; then
+            echo "::warning::Supabase DB size above 70% of free-tier quota"
+            # TODO: add Resend email alert in Phase 4a+ when Resend is wired.
+          fi
+          echo "Storage check OK"
