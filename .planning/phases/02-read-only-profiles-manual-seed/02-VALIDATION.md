@@ -59,7 +59,7 @@ created: 2026-04-21
 | TRUST-04 | HTML contains `출처:` string ≥ 1 occurrence on `/ko/companies/toss` | smoke | as above | ❌ W0 | ⬜ pending |
 | TRUST-05 | One of `text-green-600` / `text-amber-500` / `text-red-600` classes present in rendered HTML | smoke | as above | ❌ W0 | ⬜ pending |
 | TRUST-06 (inherited) | Disclaimer text from `footer.disclaimerText` present on `/ko/companies/toss` | smoke | as above | ❌ W0 | ⬜ pending |
-| ISR | `unstable_cache` call carries `tags: ['company:${slug}']` | unit (mock `unstable_cache`) | `npx vitest run tests/unit/revalidate-tag.test.ts` | ❌ W0 | ⬜ pending |
+| ISR | `unstable_cache` call carries `tags: ['company:${slug}']` | unit (mock `unstable_cache` in Plan 02-03 companies-data test) | `npx vitest run tests/unit/companies-data.test.ts -t 'cache tags shape'` | ❌ W0 (Plan 02-03 creates `tests/unit/companies-data.test.ts`) | ⬜ pending |
 | Seed idempotency | `npm run seed && npm run seed` produces 0 NET row changes | integration | `npx vitest run tests/unit/seed-idempotency.test.ts` (requires local Supabase) | ❌ W0 | ⬜ pending |
 | SRCH-13 prerequisite | Seed covers `["토스","토스뱅크","비바리퍼블리카","당근","당근마켓","Coupang","쿠팡"]` via `display_name_ko OR aliases.alias` | unit (seed-parse) | `npx vitest run tests/unit/seed-coverage.test.ts` | ❌ W0 | ⬜ pending |
 
@@ -71,7 +71,7 @@ created: 2026-04-21
 
 1. **Freshness-dot color correctness across 30 / 180-day boundaries** — 5 samples at {−1, 30, 31, 180, 181} days; covers both sides of both thresholds.
 2. **KRW formatter rounding correctness** — 9 samples at tier boundaries {`9_999n`, `10_000n`, `99_990_000n`, `100_000_000n`, `199_999_999n`, `120_000_000n`, `9_999_999_999_999n`, `10_000_000_000_000n`, `2_345_678_900_000n`}; crosses 원/만/억/조 tier transitions with both sides.
-3. **ISR cache tag invalidation shape** — 2 samples: existing slug and non-existing slug, mocking `unstable_cache` and asserting `tags: ['company:${slug}']`.
+3. **ISR cache tag invalidation shape** — 2 samples: existing slug and non-existing slug, mocking `unstable_cache` and asserting `tags: ['company:${slug}']`. Asserted in `tests/unit/companies-data.test.ts` (Plan 02-03 Task 1). There is NO separate `revalidate-tag.test.ts` file — all ISR cache-tag assertions live in `companies-data.test.ts`.
 4. **RLS honesty (inherited from Phase 1)** — existing `tests/rls/rls.test.ts` covers anon SELECT allowed on companies/aliases/funding_rounds/identifiers but INSERT/UPDATE/DELETE blocked. Phase 2 adds no new tables; no extension needed unless seed writes expose a gap.
 
 ---
