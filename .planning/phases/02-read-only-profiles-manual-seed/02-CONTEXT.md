@@ -108,6 +108,10 @@ The user explicitly did not open discussion on these areas. Defaults below are a
 
 - **D-Discretion-4 — Logo hosting.** Recommended default: **defer Cloudflare R2 to Phase 2 final plan** when actual logo count is known. Seed v1 uses logos committed to `public/logos/{slug}.{png|svg}` in the repo (50–200 files × ~20 KB each ≈ 4 MB, well under Vercel's build limits) with `logo_url = '/logos/{slug}.svg'`. R2 migration is a Phase 2 sub-plan that only fires if the seed breaks 100 logos OR a single logo > 50 KB; otherwise R2 setup is deferred to Phase 4a (when ETL may add more logos). Missing-logo fallback: a plain-letter avatar (first letter of `display_name_ko`) rendered via a `<CompanyLogo />` component with Tailwind background — no icon library, no external service.
 
+  **Amendment (Plan 02-01 via Research A7):** PNG-only for Phase 2 seed.
+  SVG XSS (V12) mitigation — `next.config.ts` keeps `images.dangerouslyAllowSVG` absent.
+  Re-evaluate if Phase 4a ETL ships upstream SVG logos.
+
 - **D-Discretion-5 — ISR + cache tagging.** Roadmap locks 1-hour revalidate. Discretion: wire `revalidateTag('company:${slug}')` tags into the `fetch` calls even though no producer calls them yet — Phase 4a DATA-10 webhook will use the exact tag shape. `unstable_cache` keyed by slug. Route configured `export const revalidate = 3600`.
 
 - **D-Discretion-6 — Mobile responsiveness pattern.** Recommended default: vertical stack at 375 px (no drawers, no accordions). Hero collapses description to 2 lines with expand-inline. Funding-round table becomes a card-per-round list via a CSS `@container` query, each card repeating the column labels. Badge line wraps below the fact on mobile if it would cause >2-line overflow.
