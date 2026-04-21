@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 
 /**
- * TRUST-06 disclaimer — "데이터 완전성을 보장하지 않습니다".
+ * TRUST-06 disclaimer (footer.disclaimerText).
  *
  * Per D-04.7, this component must appear on every page footer so that users
  * see the disclaimer before drawing conclusions from rendered data. Copy is

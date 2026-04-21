@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { Route } from 'next';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Disclaimer } from './disclaimer';
 
@@ -26,7 +27,15 @@ export async function Footer() {
           <Link href={`/${locale}/sources`}>{t('links.sources')}</Link>
           <Link href={`/${locale}/privacy`}>{t('links.privacy')}</Link>
           <Link href={`/${locale}/terms`}>{t('links.terms')}</Link>
-          <Link href={`/${locale}/contact/dsar`}>{t('links.dsar')}</Link>
+          {/*
+            DSAR landing route is delivered by Plan 06 (PIPA DSAR handler).
+            Footer link must be live in Phase 1 per FOUND-11 / D-04.7, so
+            we cast through the typedRoutes registry until the page lands.
+            robots.txt already Disallows this path (PITFALLS #7).
+          */}
+          <Link href={`/${locale}/contact/dsar` as Route}>
+            {t('links.dsar')}
+          </Link>
         </nav>
         <p className="text-xs text-neutral-500">
           {t('copyright', { year })} · {t('version')}

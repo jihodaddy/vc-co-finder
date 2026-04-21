@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { Route } from 'next';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { UserMenu } from './user-menu';
 
@@ -21,7 +22,16 @@ export async function Header() {
   return (
     <header className="border-b">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link href={`/${locale}/`} className="text-lg font-semibold">
+        {/*
+          Locale root link. typedRoutes only knows the registered children
+          (`/${locale}/sources`, etc.) — the bare `/${locale}/` parent
+          template isn't in the registry, so we cast through Route<string>.
+          Runtime behavior is identical to a registered route.
+        */}
+        <Link
+          href={`/${locale}/` as Route}
+          className="text-lg font-semibold"
+        >
           {tCommon('appName')}
         </Link>
         <nav className="flex items-center gap-6 text-sm">
