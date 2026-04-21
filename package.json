@@ -9,7 +9,8 @@
     "lint": "next lint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:rls": "vitest run tests/rls"
+    "test:rls": "vitest run tests/rls",
+    "test:smoke": "vitest run tests/smoke"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
