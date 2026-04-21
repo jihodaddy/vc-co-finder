@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { routing } from '@/i18n/routing';
 import '../globals.css';
 
@@ -23,6 +25,10 @@ function isSupportedLocale(
  *
  * Invalid locales call `notFound()` which renders the nearest `not-found.tsx`
  * with a 404 — avoids silently serving the default locale for typo'd paths.
+ *
+ * Plan 07: Vercel Analytics + Speed Insights are mounted INSIDE `<body>`
+ * (below the i18n provider) so route-aware events fire correctly. Both are
+ * cookieless on Vercel Hobby — see threat T-01-07-10.
  */
 export default async function LocaleLayout({
   children,
@@ -41,6 +47,8 @@ export default async function LocaleLayout({
         <NextIntlClientProvider locale={locale}>
           {children}
         </NextIntlClientProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
