@@ -75,7 +75,13 @@
 
 **Pitfalls addressed**: 2 (freshness badge live), 3 (provenance display), 5 (KRW+USD currency rendering), 16 (per-row data-quality visible)
 
-**Plans**: TBD
+**Plans**: 6 plans (5 waves)
+- [ ] 02-01-PLAN.md — Wave 0 scaffolding: vitest config, Drizzle schema barrel, seed skeleton, public/logos, profile.* i18n tree (wave 1)
+- [ ] 02-02-PLAN.md — Pure libs: formatKRW (PROF-11), freshnessLevel (TRUST-05), date + stage helpers + unit tests (wave 2)
+- [ ] 02-03-PLAN.md — 7 profile components + getCompanyBySlug data wrapper + shadcn badge/table/separator (wave 3)
+- [ ] 02-04-PLAN.md — /[locale]/(public)/companies/[slug]/ route with ISR + loading + error + not-found (wave 4)
+- [ ] 02-05-PLAN.md — Seed pipeline: idempotent runner + ≥20 companies (4 CRITICAL brand families) + coverage/idempotency tests + live-seed checkpoint (wave 4)
+- [ ] 02-06-PLAN.md — Smoke suite fill-in (real HTTP assertions) + 375 px manual viewport checkpoint (wave 5)
 **UI hint**: yes
 
 ---
