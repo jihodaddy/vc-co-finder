@@ -134,6 +134,123 @@
     "errorPrefix": "접수 실패",
     "rateLimitMessage": "요청이 너무 잦습니다. 잠시 후 다시 시도해 주십시오."
   },
+  "search": {
+    "page": {
+      "title": "검색",
+      "description": "한국 스타트업 인텔리전스 검색"
+    },
+    "input": {
+      "placeholder": "회사명, 별칭, 영문명 검색",
+      "srLabel": "기업 검색"
+    },
+    "autocomplete": {
+      "heading": "제안",
+      "empty": "일치하는 기업이 없습니다",
+      "loading": "검색 중...",
+      "aliasHint": "{canonical} ({aliasType})"
+    },
+    "facet": {
+      "sector": { "label": "섹터" },
+      "stage": { "label": "라운드 단계" },
+      "region": { "label": "지역" },
+      "employees": { "label": "직원 수" },
+      "funding": { "label": "누적 투자액" },
+      "founded": { "label": "설립 연도" },
+      "showMore": "더 보기",
+      "showLess": "접기",
+      "count": "({count})"
+    },
+    "range": {
+      "from": "최소",
+      "to": "최대",
+      "unit": {
+        "employees": "명",
+        "funding": "원",
+        "year": "년"
+      },
+      "bucket": {
+        "employees": {
+          "1_10": "1-10명",
+          "11_50": "11-50명",
+          "51_200": "51-200명",
+          "201_500": "201-500명",
+          "501_1000": "501-1,000명",
+          "1001_plus": "1,000명 이상"
+        }
+      },
+      "customCta": "직접 입력"
+    },
+    "chip": {
+      "remove": "{label} 제거",
+      "clearAll": "모두 지우기",
+      "activeLabel": "활성 필터"
+    },
+    "results": {
+      "count": "{count}개 기업",
+      "sortBy": "정렬",
+      "view": {
+        "table": "테이블",
+        "card": "카드",
+        "srLabel": "결과 표시 방식"
+      }
+    },
+    "columns": {
+      "name": "기업명",
+      "sector": "섹터",
+      "latestRound": "최신 라운드",
+      "cumulativeFunding": "누적 투자액",
+      "employees": "직원 수",
+      "foundedYear": "설립 연도"
+    },
+    "sort": {
+      "name_asc": "이름 (가나다)",
+      "name_desc": "이름 (역순)",
+      "recent_funding_desc": "최근 투자일 (최신순)",
+      "recent_funding_asc": "최근 투자일 (오래된순)",
+      "cumulative_funding_desc": "누적 투자액 (큰순)",
+      "cumulative_funding_asc": "누적 투자액 (작은순)",
+      "founded_desc": "설립 연도 (최신순)",
+      "founded_asc": "설립 연도 (오래된순)"
+    },
+    "empty": {
+      "heading": "0개 기업",
+      "body": "선택하신 조건에 맞는 기업이 없습니다. 필터를 완화하거나 모두 지우기를 눌러 다시 시도해 주세요.",
+      "clearCta": "모두 지우기"
+    },
+    "error": {
+      "heading": "검색 결과를 불러오지 못했습니다",
+      "body": "잠시 후 다시 시도해 주세요. 문제가 지속되면 /sources 페이지를 확인하세요.",
+      "retryCta": "다시 시도"
+    },
+    "loading": {
+      "srLabel": "검색 결과를 불러오는 중"
+    },
+    "drawer": {
+      "openCta": "필터",
+      "openWithCount": "필터 ({count})",
+      "applyCta": "적용",
+      "closeCta": "닫기",
+      "heading": "필터"
+    },
+    "pagination": {
+      "prev": "이전 페이지",
+      "next": "다음 페이지",
+      "first": "첫 페이지",
+      "last": "마지막 페이지",
+      "perPage": "페이지당",
+      "summary": "{start}-{end} / {total}개 기업"
+    },
+    "table": {
+      "rowLink": {
+        "srLabel": "{companyName} 상세 페이지"
+      }
+    },
+    "card": {
+      "rowLink": {
+        "srLabel": "{companyName} 상세 페이지"
+      }
+    }
+  },
   "profile": {
     "hero": {
       "srHeading": "회사 개요",

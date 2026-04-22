@@ -134,6 +134,123 @@
     "errorPrefix": "",
     "rateLimitMessage": ""
   },
+  "search": {
+    "page": {
+      "title": "",
+      "description": ""
+    },
+    "input": {
+      "placeholder": "",
+      "srLabel": ""
+    },
+    "autocomplete": {
+      "heading": "",
+      "empty": "",
+      "loading": "",
+      "aliasHint": ""
+    },
+    "facet": {
+      "sector": { "label": "" },
+      "stage": { "label": "" },
+      "region": { "label": "" },
+      "employees": { "label": "" },
+      "funding": { "label": "" },
+      "founded": { "label": "" },
+      "showMore": "",
+      "showLess": "",
+      "count": ""
+    },
+    "range": {
+      "from": "",
+      "to": "",
+      "unit": {
+        "employees": "",
+        "funding": "",
+        "year": ""
+      },
+      "bucket": {
+        "employees": {
+          "1_10": "",
+          "11_50": "",
+          "51_200": "",
+          "201_500": "",
+          "501_1000": "",
+          "1001_plus": ""
+        }
+      },
+      "customCta": ""
+    },
+    "chip": {
+      "remove": "",
+      "clearAll": "",
+      "activeLabel": ""
+    },
+    "results": {
+      "count": "",
+      "sortBy": "",
+      "view": {
+        "table": "",
+        "card": "",
+        "srLabel": ""
+      }
+    },
+    "columns": {
+      "name": "",
+      "sector": "",
+      "latestRound": "",
+      "cumulativeFunding": "",
+      "employees": "",
+      "foundedYear": ""
+    },
+    "sort": {
+      "name_asc": "",
+      "name_desc": "",
+      "recent_funding_desc": "",
+      "recent_funding_asc": "",
+      "cumulative_funding_desc": "",
+      "cumulative_funding_asc": "",
+      "founded_desc": "",
+      "founded_asc": ""
+    },
+    "empty": {
+      "heading": "",
+      "body": "",
+      "clearCta": ""
+    },
+    "error": {
+      "heading": "",
+      "body": "",
+      "retryCta": ""
+    },
+    "loading": {
+      "srLabel": ""
+    },
+    "drawer": {
+      "openCta": "",
+      "openWithCount": "",
+      "applyCta": "",
+      "closeCta": "",
+      "heading": ""
+    },
+    "pagination": {
+      "prev": "",
+      "next": "",
+      "first": "",
+      "last": "",
+      "perPage": "",
+      "summary": ""
+    },
+    "table": {
+      "rowLink": {
+        "srLabel": ""
+      }
+    },
+    "card": {
+      "rowLink": {
+        "srLabel": ""
+      }
+    }
+  },
   "profile": {
     "hero": {
       "srHeading": "",
