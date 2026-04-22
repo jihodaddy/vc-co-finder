@@ -12,7 +12,10 @@
     "test:rls": "vitest run tests/rls",
     "test:smoke": "vitest run tests/smoke",
     "seed": "tsx scripts/seed/seed.ts",
-    "seed:dry": "DRY_RUN=1 tsx scripts/seed/seed.ts"
+    "seed:dry": "DRY_RUN=1 tsx scripts/seed/seed.ts",
+    "synth:gen": "tsx scripts/search/generate-synthetic.ts",
+    "synth:purge": "tsx scripts/search/purge-synthetic.ts",
+    "test:load": "tsx tests/load/phase3-load.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
