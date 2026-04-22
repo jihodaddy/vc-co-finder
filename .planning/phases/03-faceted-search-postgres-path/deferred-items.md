@@ -48,6 +48,28 @@ Filesystem-only assertions (SC #6 — 3 tests) pass regardless, as plan's
 verify block anticipated. HTTP tests become green the moment DATABASE_URL
 is percent-encoded or rotated.
 
+## 03-07 (Wave 6 load + regression)
+
+### PG-DEP-01 — `tests/unit/search-schema.test.ts` imports `pg` but package is not installed
+
+**Found during:** 03-07 Task 2 full-suite regression (`npx vitest run`).
+
+**Symptom:** `Error: Cannot find package 'pg' imported from tests/unit/search-schema.test.ts` — the file was authored in Plan 03 (per its own module comment) to use `pg.Client` alongside the `postgres` library, but `pg` was never added to `devDependencies`.
+
+**Scope:** pre-existing from Plan 03 — not introduced by Plan 07. DB-INFRA-01 previously masked this (the suite threw earlier on `new URL(DATABASE_URL)` and never got far enough to try the import). With DB-INFRA-01 resolved inline during Plan 07 (password percent-encoded), the import failure surfaces.
+
+**Impact:** 1 suite fails at import time; all other tests continue. Not a load-test or SRCH-13 regression.
+
+**Fix (out of scope for 03-07):**
+1. `npm install --save-dev pg @types/pg` OR
+2. Rewrite `tests/unit/search-schema.test.ts` to use the already-installed `postgres` lib (drop the `pg.Client` dependency — single client library across the test tree).
+
+**Suggested owner:** whoever authored the schema-sanity test in Plan 03 / infra maintainer.
+
+### DB-INFRA-01 — RESOLVED during 03-07 Task 2
+
+The pre-existing deferred item (DB-INFRA-01, logged by 03-03) was resolved inline during 03-07 Task 2 preparation: `DATABASE_URL` password in `.env.local` was percent-encoded (`qwer1234##^^&&AS` → `qwer1234%23%23%5E%5E%26%26AS`) so `new URL()` parses cleanly. This unblocked the `postgres`-lib path used by the load harness and the SRCH-13 smoke test. Production environment variables (Vercel) still need the same encoding — tracked here as a follow-up for DevOps before launch.
+
 ## 03-06 (Wave 5 polish)
 
 ### COOKIE-NOTICE-01 — `MISSING_MESSAGE` for `cookieNotice.*` key tree on `/search`
