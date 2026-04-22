@@ -15,6 +15,7 @@
 <!-- Shipped and confirmed valuable. -->
 
 - [x] **기업별 투자 라운드 히스토리** (라운드 단계, 금액, 일자, 리드·참여 투자자) — Validated in Phase 2 (Read-Only Profiles + Manual Seed). `/ko/companies/[slug]` 라우트가 토스 등 15개 시드 기업에서 11-stage taxonomy + 한국 통화 포맷(억/조) + 출처 배지 + 신선도 도트를 렌더. Phase 3 SRCH-13 콜드-스타트 세트로 기능 확정.
+- [x] **다중 조건 패시트 필터** — 섹터, 라운드 단계, 지역, 직원 수, 누적 투자액, 설립연도 동시 적용. Validated in Phase 3 (Faceted Search Postgres Path). `/ko/search` 라우트가 nuqs URL 상태·pgroonga 한국어 FTS·denormalized 컬럼 조합으로 5,016행 데이터셋에서 p95 = 416.5ms (<1s 목표) 달성. SRCH-13 콜드스타트 코퍼스(토스/당근/쿠팡 등 7종) 8/8 canonical slug 해석 성공. 375px 모바일 반응형 + 칩/clearAll + 카드/테이블 뷰 + 정렬/페이징 모두 확인.
 
 ### Active
 
@@ -23,7 +24,6 @@
 - [ ] 5천~1만개 한국 스타트업의 기본 정보(법인명, 설립일, 본사 위치, 섹터, 한 줄 소개) 검색 가능
 - [ ] 기업별 **재무 추이** 5년치 — 매출, 영업이익, 자산, 부채 (DART 기반)
 - [ ] 기업별 **서비스/트래픽 메트릭** — 웹 트래픽 추이, 앱 MAU, 직원 수 추이
-- [ ] **다중 조건 패시트 필터** — 섹터, 라운드 단계, 지역, 직원 수, 누적 투자액, 설립연도 등 동시 적용 가능 검색
 - [ ] 기업 상세 페이지에 시각화된 시계열 차트 (투자/매출/직원/트래픽)
 - [ ] 소셜 로그인(Google, Kakao) 기반 회원가입
 - [ ] 로그인 사용자 한정: 워치리스트(관심 기업 저장), 검색 조건 저장, 신규 라운드 이메일 알림
@@ -101,4 +101,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-22 after Phase 2 (Read-Only Profiles + Manual Seed) completion*
+*Last updated: 2026-04-23 after Phase 3 (Faceted Search Postgres Path) completion*
