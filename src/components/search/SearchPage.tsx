@@ -12,6 +12,7 @@ import { ResultsCards } from './ResultsCards';
 import { ResultsEmpty } from './ResultsEmpty';
 import { Pagination } from './Pagination';
 import { SearchInput } from './SearchInput';
+import { LiveCountAnnouncer } from './LiveCountAnnouncer';
 import type { SearchResult } from '@/lib/search/types';
 import type { FacetDomain } from '@/lib/search/facet-domain';
 
@@ -46,6 +47,7 @@ export function SearchPage({ result, domain }: Props) {
   return (
     <main className="container mx-auto px-4 py-6 lg:py-12">
       <h1 className="sr-only">{t('page.title')}</h1>
+      <LiveCountAnnouncer count={result.total} />
 
       <div className="lg:grid lg:grid-cols-[minmax(280px,320px)_1fr] lg:gap-8">
         <div className="hidden lg:block">

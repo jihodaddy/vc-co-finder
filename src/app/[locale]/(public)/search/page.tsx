@@ -108,7 +108,11 @@ export default async function Page({ params, searchParams }: PageProps) {
   ]);
 
   return (
-    <Suspense fallback={<ResultsSkeleton view={raw.view} />}>
+    <Suspense
+      fallback={
+        <ResultsSkeleton view={raw.view} perPage={Number(raw.per_page)} />
+      }
+    >
       <SearchPage result={result} domain={domain} />
     </Suspense>
   );
