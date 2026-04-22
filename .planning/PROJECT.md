@@ -14,14 +14,13 @@
 
 <!-- Shipped and confirmed valuable. -->
 
-(None yet — ship to validate)
+- [x] **기업별 투자 라운드 히스토리** (라운드 단계, 금액, 일자, 리드·참여 투자자) — Validated in Phase 2 (Read-Only Profiles + Manual Seed). `/ko/companies/[slug]` 라우트가 토스 등 15개 시드 기업에서 11-stage taxonomy + 한국 통화 포맷(억/조) + 출처 배지 + 신선도 도트를 렌더. Phase 3 SRCH-13 콜드-스타트 세트로 기능 확정.
 
 ### Active
 
 <!-- Current scope. Building toward these. v1 hypotheses until shipped. -->
 
 - [ ] 5천~1만개 한국 스타트업의 기본 정보(법인명, 설립일, 본사 위치, 섹터, 한 줄 소개) 검색 가능
-- [ ] 기업별 **투자 라운드 히스토리**(라운드 단계, 금액, 일자, 리드 투자자, 참여 투자자) 표시
 - [ ] 기업별 **재무 추이** 5년치 — 매출, 영업이익, 자산, 부채 (DART 기반)
 - [ ] 기업별 **서비스/트래픽 메트릭** — 웹 트래픽 추이, 앱 MAU, 직원 수 추이
 - [ ] **다중 조건 패시트 필터** — 섹터, 라운드 단계, 지역, 직원 수, 누적 투자액, 설립연도 등 동시 적용 가능 검색
@@ -102,4 +101,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-20 after initialization*
+*Last updated: 2026-04-22 after Phase 2 (Read-Only Profiles + Manual Seed) completion*

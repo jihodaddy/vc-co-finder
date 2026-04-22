@@ -13,7 +13,7 @@
 ## Phases
 
 - [ ] **Phase 1: Foundation & Compliance Baseline** — Next.js + Supabase + auth + canonical schema + provenance + identity + currency + RLS + i18n + PIPA/DSAR
-- [ ] **Phase 2: Read-Only Profiles + Manual Seed** — Company detail page (ISR) with provenance UI + 한국 통화 포맷 + ≥15 brand-family seed for SRCH-13 cold-start (full ≥5,000 catalog owned by Phase 8 LAUNCH-03)
+- [x] **Phase 2: Read-Only Profiles + Manual Seed** (2026-04-22) — Company detail page (ISR) with provenance UI + 한국 통화 포맷 + ≥15 brand-family seed for SRCH-13 cold-start (full ≥5,000 catalog owned by Phase 8 LAUNCH-03)
 - [ ] **Phase 3: Faceted Search (Postgres Path)** — `/search` with multi-condition facets, KR+EN aliases, URL state, Korean morpheme tokens, sub-1s p95
 - [ ] **Phase 4a: DART ETL + Staging→Review→Publish** — Python ETL on Fly.io, GitHub Actions cron, DART connector, staging schema, identity reconciliation
 - [ ] **Phase 4b: Admin Curation UI** — `/admin/curation` review queue, diff view, audit log, soft-delete + version history (parallel with 4a)
