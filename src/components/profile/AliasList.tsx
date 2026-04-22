@@ -6,9 +6,13 @@ import type { WithMeta } from '@/lib/data/_meta';
 
 /**
  * PROF-10 Alias list. Implements UI-SPEC §Interaction Contract:
- * - Current legal alias (validTo === null): font-semibold
+ * - Current **legal** alias (aliasType === 'legal' && validTo === null):
+ *   font-semibold (the single accented row per UI-SPEC §Color accent list
+ *   item 3 — "Current legal name emphasis").
  * - Former alias (validTo !== null): line-through decoration-muted-foreground
  *                                    + "(YYYY–YYYY)" annotation
+ * - All other current rows (brand / english / common with validTo null):
+ *   default weight — only ONE row may carry the accent.
  *
  * One SourceBadge per alias row (per D-01).
  */
@@ -37,6 +41,7 @@ export async function AliasList({ aliases }: { aliases: WithMeta<CompanyAlias>[]
       <ul className="flex flex-col gap-2">
         {aliases.map((a) => {
           const isCurrent = a.validTo === null;
+          const isLegalCurrent = isCurrent && a.aliasType === 'legal';
           const range = formatYearRange(a.validFrom, a.validTo);
           return (
             <li
@@ -45,9 +50,8 @@ export async function AliasList({ aliases }: { aliases: WithMeta<CompanyAlias>[]
             >
               <span
                 className={cn(
-                  isCurrent
-                    ? 'font-semibold'
-                    : 'line-through decoration-muted-foreground',
+                  isLegalCurrent && 'font-semibold',
+                  !isCurrent && 'line-through decoration-muted-foreground',
                 )}
               >
                 {a.alias}

@@ -49,7 +49,10 @@
     "nav": {
       "sources": "데이터 출처",
       "privacy": "개인정보처리방침",
-      "terms": "이용약관"
+      "terms": "이용약관",
+      "menuLabel": "메뉴",
+      "openMenu": "메뉴 열기",
+      "closeMenu": "메뉴 닫기"
     }
   },
   "footer": {
@@ -168,7 +171,7 @@
       }
     },
     "source": {
-      "badge": "출처: {sourceLabel} · {date} 업데이트",
+      "badge": "출처: {sourceLabel} · {date}",
       "type": {
         "dart": "DART",
         "manual": "수동 큐레이션",

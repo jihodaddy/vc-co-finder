@@ -76,7 +76,7 @@ export async function FundingRoundsTable({ rounds }: Props) {
                   <TableCell>
                     {r.amountMinor === null
                       ? undisclosed
-                      : r.originalText ?? formatKRW(r.amountMinor)}
+                      : formatKRW(r.amountMinor)}
                   </TableCell>
                   <TableCell>
                     <InvestorChips
