@@ -15,7 +15,7 @@
     "seed:dry": "DRY_RUN=1 tsx scripts/seed/seed.ts",
     "synth:gen": "tsx scripts/search/generate-synthetic.ts",
     "synth:purge": "tsx scripts/search/purge-synthetic.ts",
-    "test:load": "tsx tests/load/phase3-load.ts"
+    "test:load": "tsx --require ./tests/load/_stub-server-only.cjs tests/load/phase3-load.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

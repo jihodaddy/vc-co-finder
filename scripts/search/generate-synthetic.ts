@@ -175,6 +175,61 @@ async function main() {
   }
   console.log(`\n[synth] companies done (${inserted} rows)`);
 
+  // ---- 1b. hq_region backfill for synth rows -----------------------------
+  // Migration 0017 step (7) backfills hq_region from hq_address on one-shot
+  // migration apply; there is no trigger for later inserts. Replicate that
+  // logic for freshly-inserted synth rows so load-test region-facet queries
+  // hit the `ix_companies_hq_region` partial index.
+  {
+    const { error: rpcErr } = await supa.rpc('noop');
+    // Best-effort bail: Supabase JS doesn't expose raw SQL; use a PostgREST
+    // update with a CASE-matching regexp embedded in a stored function OR,
+    // more simply, iterate distinct address prefixes. We re-fetch the synth
+    // rows with their addresses and apply the same regex app-side.
+    void rpcErr; // swallow — the RPC does not exist, we just use the client
+    const PAGE = 1000;
+    let from = 0;
+    const updates: Array<{ id: string; hq_region: string }> = [];
+    for (;;) {
+      const { data, error } = await supa
+        .from('companies')
+        .select('id, hq_address, hq_region')
+        .ilike('slug', 'synth-%')
+        .is('hq_region', null)
+        .order('id', { ascending: true })
+        .range(from, from + PAGE - 1);
+      if (error) throw new Error(`[synth] hq_region fetch: ${error.message}`);
+      if (!data || data.length === 0) break;
+      for (const r of data) {
+        const first = String(r.hq_address ?? '').split(' ')[0];
+        const region = first.replace(
+          /(특별시|광역시|특별자치시|특별자치도|도|시|군|구)$/,
+          '',
+        );
+        if (region) updates.push({ id: r.id as string, hq_region: region });
+      }
+      if (data.length < PAGE) break;
+      from += PAGE;
+    }
+    // Update in batches via upsert by id.
+    for (let i = 0; i < updates.length; i += BATCH) {
+      const chunk = updates.slice(i, i + BATCH);
+      // upsert requires the full row shape to round-trip; use update-by-id.
+      for (const u of chunk) {
+        const { error } = await supa
+          .from('companies')
+          .update({ hq_region: u.hq_region })
+          .eq('id', u.id);
+        if (error) {
+          console.error('[synth] hq_region update error:', error);
+          break;
+        }
+      }
+      process.stdout.write(`[synth] hq_region backfill ${Math.min(i + BATCH, updates.length)}/${updates.length}\r`);
+    }
+    console.log(`\n[synth] hq_region backfill done (${updates.length} rows)`);
+  }
+
   // ---- 2. Fetch ids of all synth companies for child-row insertion -------
   // Supabase REST defaults to 1000-row page limit; paginate to cover TARGET.
   const byId: Array<{ id: string; slug: string }> = [];
