@@ -18,6 +18,10 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      // Stub `server-only` in tests — the real package throws when imported
+      // outside an RSC context, which is correct for production but blocks
+      // unit tests of server-side helpers (e.g. freshnessLevel).
+      'server-only': path.resolve(__dirname, './tests/__mocks__/server-only.ts'),
     },
   },
   test: {
