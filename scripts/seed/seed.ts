@@ -1,9 +1,35 @@
 /* eslint-disable no-console */
 import 'dotenv/config';
-import { createAdminClient } from '@/lib/supabase/admin';
+import { config as loadEnv } from 'dotenv';
+import { createClient } from '@supabase/supabase-js';
 import { usdToKrwMinor } from './fx';
 import { companies as allCompanies } from './companies';
 import type { SeedCompany, SeedFundingRound } from './types';
+
+// Load .env.local first (dev credentials), then fall back to .env
+loadEnv({ path: '.env.local' });
+
+/**
+ * Standalone service-role client for the seed script.
+ *
+ * Intentionally does NOT import `@/lib/supabase/admin` — that module has
+ * `import 'server-only'` which throws outside an RSC/Next runtime. Seed is
+ * a plain Node tsx entry point, so it creates its own service-role client.
+ * RLS-bypass is still gated by the env var's presence (no key = no seed).
+ */
+function createAdminClient() {
+  if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    throw new Error('SUPABASE_SERVICE_ROLE_KEY is required but not set');
+  }
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+    throw new Error('NEXT_PUBLIC_SUPABASE_URL is required but not set');
+  }
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY,
+    { auth: { autoRefreshToken: false, persistSession: false } }
+  );
+}
 
 /**
  * Seed pipeline entry point for Phase 2 manual curation.
