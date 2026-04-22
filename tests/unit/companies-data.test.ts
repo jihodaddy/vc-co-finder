@@ -74,12 +74,12 @@ describe('getCompanyBySlug', () => {
     expect(calls[0].keyParts).toEqual(['company', 'toss']);
   });
 
-  it('amount_minor string from supabase is preserved as bigint', async () => {
+  it('amount_minor from supabase is returned as numeric string (RSC-safe)', async () => {
     const { getCompanyBySlug } = await import('@/lib/data/companies');
     const profile = await getCompanyBySlug('toss');
     expect(profile).not.toBeNull();
-    expect(profile!.fundingRounds[0].amountMinor).toBe(100_000_000n);
-    expect(typeof profile!.fundingRounds[0].amountMinor).toBe('bigint');
+    expect(profile!.fundingRounds[0].amountMinor).toBe('100000000');
+    expect(typeof profile!.fundingRounds[0].amountMinor).toBe('string');
   });
 
   it('hero carries SourceMeta with lastVerifiedAt from the fact row', async () => {

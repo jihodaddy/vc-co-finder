@@ -29,14 +29,19 @@ const MAN = 1_0000n;
 const MAN_PART_THRESHOLD = 1000n; // 1,000만 — the D-Discretion-3 threshold
 
 export function formatKRW(
-  amountMinor: bigint | number | null | undefined,
+  // String accepted for RSC-safe data (see CompanyFundingRound.amountMinor).
+  amountMinor: bigint | number | string | null | undefined,
   opts: FormatKRWOptions = {}
 ): string {
   if (amountMinor === null || amountMinor === undefined) {
     return opts.undisclosedLabel ?? '비공개';
   }
   const n: bigint =
-    typeof amountMinor === 'bigint' ? amountMinor : BigInt(Math.trunc(amountMinor));
+    typeof amountMinor === 'bigint'
+      ? amountMinor
+      : typeof amountMinor === 'string'
+        ? BigInt(amountMinor)
+        : BigInt(Math.trunc(amountMinor));
   if (n < 0n) {
     throw new Error('formatKRW: negative amounts not supported');
   }

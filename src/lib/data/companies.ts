@@ -50,7 +50,9 @@ export type CompanyAlias = {
 export type CompanyFundingRound = {
   id: string;
   stage: string; // funding_stage ENUM string
-  amountMinor: bigint | null;
+  // Numeric string (BigInt-safe) — RSC payload can't serialize BigInt.
+  // Consumers use formatKRW which accepts string input.
+  amountMinor: string | null;
   currencyCode: string | null;
   originalText: string | null;
   announcedAt: string | null;
@@ -205,7 +207,7 @@ async function fetchCompanyBySlug(slug: string): Promise<CompanyProfile | null> 
           amountMinor:
             r.amount_minor === null || r.amount_minor === undefined
               ? null
-              : BigInt(r.amount_minor),
+              : String(r.amount_minor),
           currencyCode: r.currency_code,
           originalText: r.original_text,
           announcedAt: r.announced_at,
