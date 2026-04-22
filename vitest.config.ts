@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
 import path from 'node:path';
 
 /**
@@ -13,8 +14,12 @@ import path from 'node:path';
  *     // @vitest-environment happy-dom
  *   (Vitest 4 removed `environmentMatchGlobs`; the per-file pragma is the
  *   supported replacement per https://vitest.dev/guide/environment.html.)
+ * - `@vitejs/plugin-react` handles TSX transform so Next.js's
+ *   `jsx: preserve` tsconfig doesn't break `.tsx` imports inside vitest
+ *   (Plan 02-03 Task 2 deviation — shadcn/profile components are TSX).
  */
 export default defineConfig({
+  plugins: [react()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
