@@ -12,8 +12,11 @@ vi.mock('next/cache', () => ({
   },
 }));
 
-vi.mock('@/lib/supabase/server', () => ({
-  createClient: vi.fn(async () => ({
+// Mock @supabase/supabase-js directly — companies.ts uses createClient from
+// this package to build a cookie-free anon client (Plan 02-06 fix: moved away
+// from @/lib/supabase/server because cookies() inside unstable_cache throws).
+vi.mock('@supabase/supabase-js', () => ({
+  createClient: vi.fn(() => ({
     from: () => ({
       select: () => ({
         eq: () => ({

@@ -1,12 +1,28 @@
 import 'server-only';
 import { unstable_cache } from 'next/cache';
-import { createClient } from '@/lib/supabase/server';
+import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import {
   type SourceMeta,
   type SourceType,
   type WithMeta,
   attachSource,
 } from './_meta';
+
+/**
+ * Cookie-free anon client for public reads.
+ *
+ * Deliberately does NOT use `@/lib/supabase/server` — that helper reads
+ * cookies, and Next.js forbids calling `cookies()` inside `unstable_cache`.
+ * The company profile is a public read gated only by RLS
+ * (canonical_select_public) so the anon key + no cookies is the right fit.
+ */
+function createAnonClient() {
+  return createSupabaseClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    { auth: { persistSession: false, autoRefreshToken: false } }
+  );
+}
 
 // ---- Public shapes ----------------------------------------------------
 
@@ -93,7 +109,7 @@ function sourceMetaFromRow(src: SourceRow, factLastVerifiedAt: string): SourceMe
 // ---- Query -----------------------------------------------------------
 
 async function fetchCompanyBySlug(slug: string): Promise<CompanyProfile | null> {
-  const supabase = await createClient();
+  const supabase = createAnonClient();
 
   const { data, error } = await supabase
     .from('companies')
