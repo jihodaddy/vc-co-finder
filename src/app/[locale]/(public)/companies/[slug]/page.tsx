@@ -15,9 +15,9 @@ import { IdentifierList } from '@/components/profile/IdentifierList';
  * publish without waiting for the clock.
  *
  * D-04: Only Hero / AliasList / FundingRoundsTable / IdentifierList
- * render. Do NOT add placeholders for Phase 4a/6/7 sections (charts,
- * news, similar companies). When those phases arrive, insertion points
- * go AFTER FundingRoundsTable and BEFORE IdentifierList.
+ * render. Do NOT pre-reserve layout space for later-phase sections.
+ * When those phases arrive, insertion points go AFTER FundingRoundsTable
+ * and BEFORE IdentifierList.
  *
  * Research A6 resolution: no static-param pre-generation — pages build
  * on first visit (dynamicParams: true is the Next 15.5 default). Seed
