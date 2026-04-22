@@ -109,7 +109,7 @@
 - [x] 03-01-PLAN.md — Wave 0 scaffolding: search.* i18n namespace, test harness stubs, SRCH13_CORPUS fixtures, gitkeep dirs (wave 1)
 - [x] 03-02-PLAN.md — [BLOCKING] Migration 0017: pgroonga extension + 7 denormalized columns + refresh triggers + 7 indexes + backfill (wave 2)
 - [x] 03-03-PLAN.md — Pure libs: SearchAdapter interface + postgres.ts implementation + nuqs query-params + sort SQL + paginationWindow + parseKRW (wave 3)
-- [ ] 03-04-PLAN.md — 10 shadcn blocks + facet sidebar/drawer + checkbox list + range buckets + range inputs + active chip bar (wave 4)
+- [x] 03-04-PLAN.md — 10 shadcn blocks + facet sidebar/drawer + checkbox list + range buckets + range inputs + active chip bar (wave 4)
 - [ ] 03-05-PLAN.md — /search route + SearchPage composition + autocomplete Server Action + results table/cards/skeleton/empty + sort/view/pagination (wave 5)
 - [ ] 03-06-PLAN.md — Polish pass: live-region announcer + Sentry error forwarder + empty-state reset + skeleton perPage + 12 live smoke assertions (wave 6)
 - [ ] 03-07-PLAN.md — [GATE] 5k synthetic generator + load test p95<1s + SRCH-13 live regression + 375px mobile human-verify (wave 7)
