@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import type { Route } from 'next';
 
 /**
  * Mobile hamburger menu — appears below the `sm` breakpoint.
@@ -84,7 +85,7 @@ export function MobileNav({
             {links.map((l) => (
               <li key={l.href}>
                 <Link
-                  href={l.href}
+                  href={l.href as Route}
                   className="block rounded-md px-2 py-2 hover:bg-muted"
                   onClick={() => setOpen(false)}
                 >

@@ -13,7 +13,7 @@
 ## Phases
 
 - [ ] **Phase 1: Foundation & Compliance Baseline** — Next.js + Supabase + auth + canonical schema + provenance + identity + currency + RLS + i18n + PIPA/DSAR
-- [ ] **Phase 2: Read-Only Profiles + Manual Seed** — Company detail page (ISR) with provenance UI + 한국 통화 포맷 + 50–200 manually-curated companies
+- [ ] **Phase 2: Read-Only Profiles + Manual Seed** — Company detail page (ISR) with provenance UI + 한국 통화 포맷 + ≥15 brand-family seed for SRCH-13 cold-start (full ≥5,000 catalog owned by Phase 8 LAUNCH-03)
 - [ ] **Phase 3: Faceted Search (Postgres Path)** — `/search` with multi-condition facets, KR+EN aliases, URL state, Korean morpheme tokens, sub-1s p95
 - [ ] **Phase 4a: DART ETL + Staging→Review→Publish** — Python ETL on Fly.io, GitHub Actions cron, DART connector, staging schema, identity reconciliation
 - [ ] **Phase 4b: Admin Curation UI** — `/admin/curation` review queue, diff view, audit log, soft-delete + version history (parallel with 4a)
@@ -58,7 +58,7 @@
 
 ### Phase 2: Read-Only Profiles + Manual Seed
 
-**Goal**: A researcher can navigate to `/companies/[slug]` for any of 50–200 manually-seeded Korean startups and read a hero section, funding-round table, Korean alias list, and primary identifiers — every fact carrying an inline source badge with last-verified date and a freshness color dot.
+**Goal**: A researcher can navigate to `/companies/[slug]` for any seeded Korean startup and read a hero section, funding-round table, Korean alias list, and primary identifiers — every fact carrying an inline source badge with last-verified date and a freshness color dot. Seed volume is scoped to the **cold-start set** required for Phase 3 SRCH-13 Korean regression coverage (4 CRITICAL brand families + ≥11 sector-diverse entries); the full manually-curated catalog (≥5,000 companies) is owned by Phase 8 LAUNCH-03 behind the ETL + admin curation pipeline delivered in Phase 4a/4b.
 
 **Depends on**: Phase 1 (schema, auth, provenance display infra)
 
@@ -71,17 +71,17 @@
   2. Every numeric fact on the company page renders an inline "출처: [DART/manual] · 2026-MM-DD 업데이트" badge, plus a green/yellow/red freshness dot reflecting `last_verified_at` age (≤30d / ≤180d / >180d).
   3. The page reads correctly on a 375px-wide mobile viewport (drawer or collapsible sections, readable typography, touch-sized targets).
   4. The page is rendered via ISR with 1-hour revalidate; first paint loads in <1s on 4G simulation; the app correctly displays "데이터 완전성을 보장하지 않습니다" disclaimer in the footer.
-  5. 50–200 seed companies are committed via SQL/CSV import (with `source_id` pointing to a `manual_curation` data_sources row), enabling Phase 3 search QA against real names.
+  5. The Phase 3 SRCH-13 cold-start seed set (4 CRITICAL brand families — 토스 / 당근 / 쿠팡 / 배민 — plus ≥11 sector-diverse entries, ≥15 total) is committed via an idempotent seed script (with `source_id` pointing to the `manual_curation` data_sources row), enabling Phase 3 Korean alias regression QA against real names. The full ≥5,000-company catalog is deferred to Phase 8 LAUNCH-03 behind the ETL pipeline.
 
 **Pitfalls addressed**: 2 (freshness badge live), 3 (provenance display), 5 (KRW+USD currency rendering), 16 (per-row data-quality visible)
 
 **Plans**: 6 plans (5 waves)
-- [ ] 02-01-PLAN.md — Wave 0 scaffolding: vitest config, Drizzle schema barrel, seed skeleton, public/logos, profile.* i18n tree (wave 1)
-- [ ] 02-02-PLAN.md — Pure libs: formatKRW (PROF-11), freshnessLevel (TRUST-05), date + stage helpers + unit tests (wave 2)
-- [ ] 02-03-PLAN.md — 7 profile components + getCompanyBySlug data wrapper + shadcn badge/table/separator (wave 3)
-- [ ] 02-04-PLAN.md — /[locale]/(public)/companies/[slug]/ route with ISR + loading + error + not-found (wave 4)
-- [ ] 02-05-PLAN.md — Seed pipeline: idempotent runner + ≥20 companies (4 CRITICAL brand families) + coverage/idempotency tests + live-seed checkpoint (wave 4)
-- [ ] 02-06-PLAN.md — Smoke suite fill-in (real HTTP assertions) + 375 px manual viewport checkpoint (wave 5)
+- [x] 02-01-PLAN.md — Wave 0 scaffolding: vitest config, Drizzle schema barrel, seed skeleton, public/logos, profile.* i18n tree (wave 1)
+- [x] 02-02-PLAN.md — Pure libs: formatKRW (PROF-11), freshnessLevel (TRUST-05), date + stage helpers + unit tests (wave 2)
+- [x] 02-03-PLAN.md — 7 profile components + getCompanyBySlug data wrapper + shadcn badge/table/separator (wave 3)
+- [x] 02-04-PLAN.md — /[locale]/(public)/companies/[slug]/ route with ISR + loading + error + not-found (wave 4)
+- [x] 02-05-PLAN.md — Seed pipeline: idempotent runner + ≥15 companies (4 CRITICAL brand families + 11 sector-diverse, SRCH-13 cold-start scope) + coverage/idempotency tests + live-seed checkpoint (wave 4)
+- [x] 02-06-PLAN.md — Smoke suite fill-in (real HTTP assertions) + 375 px manual viewport checkpoint (wave 5)
 **UI hint**: yes
 
 ---

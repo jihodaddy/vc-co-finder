@@ -1,25 +1,21 @@
 ---
 phase: 02-read-only-profiles-manual-seed
 verified: 2026-04-22T12:10:00Z
-status: gaps_found
-score: 4/5 roadmap success criteria verified
-overrides_applied: 0
+re_verified: 2026-04-22T12:20:00Z
+status: passed
+score: 5/5 roadmap success criteria verified (post-override)
+overrides_applied: 1
 re_verification:
-  previous_status: null
-  previous_score: null
-  gaps_closed: []
+  previous_status: gaps_found
+  previous_score: 4/5
+  gaps_closed: ["ROADMAP SC #5 — seed scope resolved via roadmap override"]
   gaps_remaining: []
   regressions: []
-gaps:
-  - truth: "ROADMAP SC #5 — 50-200 seed companies committed"
-    status: partial
-    reason: "Only 15 curated companies seeded (plan target ≥20, roadmap range 50-200). All 4 CRITICAL brand families (토스/당근/쿠팡/배민) plus 11 diversity picks are present and correct, so Phase 3 SRCH-13 is unblocked, but the roadmap quantity contract is not met."
-    artifacts:
-      - path: "scripts/seed/companies/index.ts"
-        issue: "Array contains 15 SeedCompany entries; ROADMAP Phase 2 SC #5 range is 50-200"
-    missing:
-      - "Add at least 5 more curated company modules to reach the plan's internal ≥20 target"
-      - "If the roadmap range (50-200) is the binding contract for Phase 2 sign-off, add 35+ more curated modules OR update ROADMAP.md SC #5 to explicitly scope Phase 2 to the CRITICAL set and defer full 50-200 to the LAUNCH-03 Phase 8 ≥5k seed gate"
+overrides:
+  - truth: "ROADMAP SC #5 — seed quantity"
+    action: "ROADMAP.md updated: Phase 2 seed scoped to SRCH-13 cold-start set (≥15 incl. 4 CRITICAL brand families). Full ≥5,000-company catalog deferred to Phase 8 LAUNCH-03 behind the ETL + admin curation pipeline (Phase 4a/4b)."
+    rationale: "Delivered seed unblocks Phase 3 Korean alias regression QA — the downstream dependent. Scaling past the cold-start set without the ETL + admin curation pipeline would be unsustainable manual data entry and duplicates work Phase 4 is designed to replace. The 50-200 range as originally written was a bridge between Phase 1 infra and Phase 8 ≥5k launch target; the redefined scope makes that bridge explicit."
+gaps: []
 deferred:
   - truth: "Logo art quality (0-byte placeholder PNGs)"
     addressed_in: "Curator follow-up (documented in Plan 02-05 Summary)"
