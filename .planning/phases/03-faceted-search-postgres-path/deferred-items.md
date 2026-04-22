@@ -40,3 +40,36 @@ why the issue surfaces now, with the first consumer of the `postgres` lib.
    tests should go from `skipped` to `passed` against the live seed.
 
 **Suggested owner:** DevOps / environment setup (before Plan 05 route ships).
+
+**Plan 06 confirmation:** DB-INFRA-01 is still open. Plan 06 smoke suite's
+HTTP-dependent tests (SC #1 / SC #2 / SC #5 — 9 tests) fail with HTTP 500
+because `/ko/search` rethrows `TypeError: Invalid URL` before rendering.
+Filesystem-only assertions (SC #6 — 3 tests) pass regardless, as plan's
+verify block anticipated. HTTP tests become green the moment DATABASE_URL
+is percent-encoded or rotated.
+
+## 03-06 (Wave 5 polish)
+
+### COOKIE-NOTICE-01 — `MISSING_MESSAGE` for `cookieNotice.*` key tree on `/search`
+
+**Found during:** 03-06 Task 2 smoke run against live dev server.
+
+**Symptom:** `Error: MISSING_MESSAGE: No messages were configured on the
+provider.` thrown from `src/components/site/cookie-notice.tsx:24` while
+rendering `/ko/search`. The cookieNotice copy exists in `ko.json` (lines
+69-73) — so the failure indicates the `(public)` layout is not surfacing
+the cookieNotice namespace to the CookieNotice client component at
+`/search`.
+
+**Scope:** cookie notice wiring landed in Phase 1 (FOUND); Plan 06 did
+not touch it. Not a regression from this plan.
+
+**Impact:** rendering `/search` without a seeded DB triggers
+error.tsx (sentry captured, retry CTA shown), so users never see the
+MISSING_MESSAGE — but the CookieNotice failure still logs to the server
+console and could surface if the DB-INFRA-01 crash is fixed first.
+
+**Suggested owner:** next-intl provider configuration review in
+`src/app/[locale]/(public)/layout.tsx` or the CookieNotice component
+itself (move namespace declaration closer to use-site).
+

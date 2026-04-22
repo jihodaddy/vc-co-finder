@@ -1,4 +1,3 @@
-import 'server-only';
 import { differenceInDays } from 'date-fns';
 
 /**
@@ -10,6 +9,14 @@ import { differenceInDays } from 'date-fns';
  * IMPORTANT: takes `lastVerifiedAt` (TRUST-02) NOT `updated_at`. See
  * RESEARCH §Pitfall 1 — using updated_at here produces false-green dots
  * when any DB write touches the row (currency refresh, etc.).
+ *
+ * Plan 06 (Phase 3 Wave 5) deviation — Rule 1 bug fix: removed the
+ * `import 'server-only'` directive so that client components in
+ * `src/components/search/*` (ResultsTable, ResultsCards) can share this
+ * single source of truth. The helper is pure (differenceInDays + a
+ * Tailwind class map) — nothing here touches server-only secrets, so
+ * `server-only` was overly restrictive. The anti-regression guard still
+ * holds: no component may hard-code the freshness hex palette.
  */
 export type FreshnessLevel = 'fresh' | 'stale' | 'expired';
 
