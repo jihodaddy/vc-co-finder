@@ -95,3 +95,87 @@ console and could surface if the DB-INFRA-01 crash is fixed first.
 `src/app/[locale]/(public)/layout.tsx` or the CookieNotice component
 itself (move namespace declaration closer to use-site).
 
+
+---
+
+## 03-07 (Phase gate — Wave 7 checkpoint findings)
+
+### TURBOPACK-POSTCSS-01 — Turbopack PostCSS worker crash on Windows
+
+**Found during:** 03-07 Task 3 375px human-verify — attempted `npm run dev`
+(which uses `next dev --turbopack`) to load `http://localhost:3000/ko/search`.
+
+**Symptom:**
+```
+TurbopackInternalError: Failed to write app endpoint /[locale]/(public)/search/page
+
+Caused by:
+- [project]/src/app/globals.css [app-client] (css)
+- creating new process
+- node process exited before we could connect to it with exit code: 0xc0000142
+- Execution of PostCssTransformedAsset::process failed
+```
+
+Windows error `0xc0000142` is `STATUS_DLL_INIT_FAILED` — the PostCSS worker
+process cannot initialize when Turbopack tries to spawn it to process
+`globals.css`. Page returns HTTP 500 with only `statusCode: 500` payload.
+
+**Scope:** toolchain issue, not introduced by Phase 3 code. Affects ALL
+routes on Windows once any Tailwind CSS file is imported. Unrelated to the
+route/component logic.
+
+**Workaround used during verification:** `npx next dev` (drop the
+`--turbopack` flag) — webpack compiles and serves the page correctly. Slower
+compile (~75s cold) but functionally equivalent.
+
+**Fix candidates (out of scope for Phase 3):**
+1. Update the `dev` script to drop `--turbopack` permanently until Turbopack
+   fixes the Windows PostCSS worker spawn issue.
+2. Add a secondary `dev:webpack` script as a documented escape hatch,
+   keeping `dev` on Turbopack for macOS/Linux contributors.
+3. Wait for Next 15.6+ / Turbopack patch that addresses the
+   `0xc0000142` DLL-init failure on Windows (upstream report needed).
+
+**Suggested owner:** DevOps / toolchain setup. Does NOT block Phase 3
+acceptance — the `/search` route, all facets, autocomplete, sort, view
+toggle, pagination, error boundary, i18n and nuqs wiring all work on
+`next dev` (no Turbopack) and presumably in production (Vercel builds with
+webpack-compatible compilers).
+
+---
+
+### I18N-NUQS-ROOT-01 — Missing messages prop + NuqsAdapter (FIXED inline)
+
+**Found during:** 03-07 Task 3 375px human-verify — `/search` rendered
+`error.tsx`, and error.tsx showed raw keys (`search.error.heading`,
+`search.error.body`, `search.error.retryCta`) instead of translated copy.
+
+**Root causes identified:**
+1. `src/app/[locale]/layout.tsx` mounted `NextIntlClientProvider` without
+   the `messages` prop. In next-intl 3.x Client Components (including
+   error.tsx) require the provider to ship a dictionary — without it,
+   `useTranslations` echoes keys verbatim. This was a latent Phase 1
+   bug (COOKIE-NOTICE-01 related) never surfaced because the first
+   user-facing Client-Component error UI shipped in Phase 3 Wave 5.
+2. `NuqsAdapter` from `nuqs/adapters/next/app` was never mounted.
+   nuqs 2.x throws `NUQS-404 nuqs requires an adapter to work with
+   your framework` from any `useQueryStates` call. Plan 03-05's
+   `SearchPage` introduced the first `useQueryStates` consumer, so the
+   error only surfaced with Phase 3's `/search`.
+
+**Fix committed in `fix(03-07): wire NuqsAdapter + pass next-intl messages prop`:**
+- Import `getMessages` from `next-intl/server` and pass
+  `messages={await getMessages({ locale })}` to `NextIntlClientProvider`.
+- Import `NuqsAdapter` from `nuqs/adapters/next/app` and wrap `{children}`
+  inside it.
+
+**Why in-scope for Phase 3:** SearchPage cannot render without either fix;
+without them the 375px human-verify is impossible. Unlike
+TURBOPACK-POSTCSS-01, these are product-code wiring defects that block the
+Phase 3 acceptance contract (SRCH-01..13 all depend on `/search`
+rendering).
+
+**Verification:** After fix, `npx next dev` on port 3005 returns HTTP 200
+for `/ko/search` with the facet sidebar ("섹터") rendered, no
+`⨯ Error: [nuqs] nuqs requires an adapter` in the server log, and no
+`error.tsx` rendering (h2.text-xl.font-semibold count = 0 in response).
