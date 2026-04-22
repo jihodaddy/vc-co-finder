@@ -52,3 +52,6 @@ next-env.d.ts
 # supabase (local CLI state)
 supabase/.temp/
 supabase/.branches/
+
+# GSD / Claude agent scratch — worktree checkouts are ephemeral
+.claude/worktrees/
