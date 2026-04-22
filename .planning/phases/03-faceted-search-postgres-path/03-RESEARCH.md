@@ -783,17 +783,21 @@ LIMIT :limit;
 
 **How discuss-phase should treat this:** A1, A4, A5 are the critical ones to either (a) verify empirically in Wave 0 against the 15-row seed before committing to the migration, or (b) keep the `pg_trgm`-only fallback as the Plan B path in the migration's comments so it's one revert away.
 
-## Open Questions
+## Open Questions (RESOLVED)
+
+All five open questions below were resolved during planning. This section is retained as an audit trail; see inline `RESOLVED:` markers for the locked decision and the downstream plan that codifies it.
 
 1. **PGroonga default TokenBigram for Korean: does "토스" match "토스뱅크"?**
    - What we know: TokenBigram tokenizes non-ASCII into overlapping 2-chars. "토스뱅크" → "토스", "스뱅", "뱅크". Query "토스" → "토스". Index should match.
    - What's unclear: PGroonga docs suggest `TokenNgram("unify_alphabet", false, ...)` for more reliable partial match than default TokenBigram.
    - Recommendation: Wave 0 task = enable pgroonga, create both index variants on 1 test column, run SRCH-13 corpus, pick the variant that passes all 7 entries. Lock choice in migration 0017.
+   - **RESOLVED:** Plan 02 (migration 0017) adopts PGroonga default `TokenBigram` on `companies.search_doc` and `aliases.alias`. Plan 07 Task 2 (load test) and Plan 07 Task 1 (SRCH-13 live regression) act as the empirical validation gate. If the 7-entry corpus fails at Plan 07 runtime, the remediation documented in Plan 07 REPORT.md is to recreate the indexes with `USING pgroonga (col) WITH (tokenizer='TokenNgram("unify_alphabet", false, "unify_symbol", false)')` — this is a drop-index + create-index operation and does not require a new migration file. Plan B trigger point = any corpus miss in `tests/smoke/phase3-srch13.test.ts`.
 
 2. **Should employees_latest wait for Phase 4a ETL or use Phase 2 seed's current employees field?**
    - What we know: `companies` table has no `employees` column; employees data goes into `company_facts` per migration 0006. Phase 2 seed didn't populate company_facts for employees.
    - What's unclear: Is the 15-company seed's employees data stored anywhere today?
    - Recommendation: Wave 2 verifies. If missing: keep `employees_latest` column nullable, seed a few manually via SQL INSERT into `company_facts` as part of synthetic data generator so range facet has something to filter on in dev. Document that full coverage comes from Phase 4a.
+   - **RESOLVED:** Plan 02 keeps `employees_latest INTEGER NULL` on `companies` and wires a trigger on `company_facts` (fact_type='employees') to populate it. For the Phase 2 15-row cold-start seed, no `company_facts` employees entries exist, so `employees_latest` stays NULL — and the adapter's employees range filter is designed to IGNORE rows with NULL `employees_latest` only when a min OR max is provided (i.e., NULL = "unknown, excluded from range facet, included in everything else"). Plan 07 Task 1 (`scripts/search/generate-synthetic.ts`) then seeds `company_facts` employees entries for ~60% of synthetic rows so the 5k load test exercises the range facet. Full real-world coverage arrives with Phase 4a DART ETL (REQ FOUND-etl).
 
 3. **Is `region` currently an enum or free text?**
    - What we know: Migration 0004 defines `region CHAR(2) NOT NULL DEFAULT 'KR'` (ISO 3166-1 alpha-2).
@@ -803,16 +807,19 @@ LIMIT :limit;
      - (b) Defer region facet to Phase 8 when non-Korean companies seed in
      - (c) Keep region=KR facet for Asia-expansion readiness (contract future-proofing at cost of one-item dropdown in v1)
    - Recommendation: (a) — adds a `hq_region TEXT` column derived from `hq_address` first-word (서울/경기/부산 etc.) at ETL time; for v1 seed, populate by hand in 0017 migration backfill. Contains variance for real facet filtering.
+   - **RESOLVED:** Option (a). Plan 02 migration 0017 adds `hq_region TEXT NULL` to `companies` and includes a one-time backfill that derives 시도-level value from the first whitespace-delimited token of `hq_address` (서울특별시/경기도/부산광역시/…). The D-04 "지역" facet binds to `hq_region`, not the CHAR(2) `region` column. The existing `region CHAR(2)` column stays in place for future Asia expansion (non-Korean companies) but is not surfaced as a facet in v1. Plan 07 synthetic generator uses weighted `REGIONS_ADDR` distributions so `hq_region` backfill yields meaningful cardinality at 5k rows.
 
 4. **Can we avoid the `search_doc` trigger complexity by using a `GENERATED ALWAYS AS` column?**
    - What we know: PG15 supports stored generated columns but they cannot reference other tables (aliases).
    - What's unclear: Could a view + materialized view suffice?
    - Recommendation: Use trigger. Materialized views refresh is all-or-nothing and 10-minute refresh windows defeat freshness.
+   - **RESOLVED:** Use trigger. Plan 02 migration 0017 implements `fn_refresh_company_search_fields(uuid)` plus AFTER INSERT/UPDATE/DELETE triggers on `funding_rounds`, `aliases`, and `company_facts`. Generated columns cannot read from `aliases` (cross-table reference) and materialized views lose real-time freshness. The trigger path is authoritative; `search_doc` is a plain TEXT column (not generated) so the function can concatenate `display_name_ko + display_name_en + legal_name + string_agg(aliases.alias)` atomically.
 
 5. **URL length budget — at 5 facets × 10 selected values each + sort + page + view, URL can exceed 2KB.**
    - What we know: Most browsers handle 8KB URLs; comma-separated encoding keeps it tight.
    - What's unclear: At what facet combination count does UX break (shareable link failures)?
    - Recommendation: Not a v1 issue at 15 companies. Defer to Phase 8 load-test finding.
+   - **RESOLVED:** Deferred to Phase 8 LAUNCH-05 load test. At v1 dataset sizes (15 rows cold-start, 5k synthetic for load validation) and realistic facet cardinality (<=6 facets × typically 1–3 selected values each) URL length stays well under 1KB. nuqs parsers already cap array lengths defensively (array-length validator in Plan 03 query-params.ts rejects >50 entries per facet, per security domain). Plan 07 load test exercises 5-facet mixes but does not stress the extreme pathological case; that belongs to Phase 8 concurrency/load testing (LAUNCH-05), which owns cross-browser URL-limit behavior and CDN header-size budgets.
 
 ## Environment Availability
 
