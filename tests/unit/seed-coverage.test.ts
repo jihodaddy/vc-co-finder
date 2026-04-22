@@ -43,8 +43,8 @@ describe('Seed coverage (SRCH-13 pre-requisite)', () => {
     }
   });
 
-  it('at least 8 seed companies after tranche 1', () => {
-    expect(companies.length).toBeGreaterThanOrEqual(8);
+  it('at least 15 seed companies after tranche 2', () => {
+    expect(companies.length).toBeGreaterThanOrEqual(15);
   });
 
   it('every company has ≥1 alias', () => {

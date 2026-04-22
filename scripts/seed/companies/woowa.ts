@@ -29,8 +29,10 @@ export const woowa: SeedCompany = {
     { alias: 'Woowa Brothers Corp.', alias_type: 'english' },
   ],
   funding_rounds: [],
+  // NOTE: 사업자등록번호 '120-87-81003'은 baemin.ts가 보유 (company_identifiers
+  // UNIQUE (kind, value) 글로벌 제약). woowa 슬러그는 corporate_registration_number
+  // 또는 법인등록번호 공개 자료 확보 시 승격 가능. 현재는 도메인만.
   identifiers: [
-    { kind: 'business_registration_number', value: '120-87-81003', last_verified_at: '2026-04-21' },
     { kind: 'website_domain', value: 'woowahan.com', last_verified_at: '2026-04-21' },
   ],
 };
