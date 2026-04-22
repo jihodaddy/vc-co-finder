@@ -1,7 +1,8 @@
 ---
 phase: 3
 slug: faceted-search-postgres-path
-status: draft
+status: approved
+reviewed_at: 2026-04-22
 shadcn_initialized: true
 preset: default (slate baseColor, cssVariables=true, Radix variant, lucide)
 created: 2026-04-22
