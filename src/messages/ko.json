@@ -183,7 +183,14 @@
     "chip": {
       "remove": "{label} 제거",
       "clearAll": "모두 지우기",
-      "activeLabel": "활성 필터"
+      "activeLabel": "활성 필터",
+      "range": {
+        "between": "{label} {min}-{max}",
+        "atLeast": "{label} {min} 이상",
+        "atMost": "{label} {max} 이하",
+        "foundedAfter": "{label} {min}{unit} 이후",
+        "foundedBefore": "{label} {max}{unit} 이전"
+      }
     },
     "results": {
       "count": "{count}개 기업",
