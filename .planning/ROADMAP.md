@@ -112,7 +112,7 @@
 - [x] 03-04-PLAN.md — 10 shadcn blocks + facet sidebar/drawer + checkbox list + range buckets + range inputs + active chip bar (wave 4)
 - [x] 03-05-PLAN.md — /search route + SearchPage composition + autocomplete Server Action + results table/cards/skeleton/empty + sort/view/pagination (wave 5)
 - [x] 03-06-PLAN.md — Polish pass: live-region announcer + Sentry error forwarder + empty-state reset + skeleton perPage + 12 live smoke assertions (wave 6)
-- [ ] 03-07-PLAN.md — [GATE] 5k synthetic generator + load test p95<1s + SRCH-13 live regression + 375px mobile human-verify (wave 7)
+- [x] 03-07-PLAN.md — [GATE] 5k synthetic generator + load test p95<1s + SRCH-13 live regression + 375px mobile human-verify (wave 7)
 **UI hint**: yes
 
 ---
