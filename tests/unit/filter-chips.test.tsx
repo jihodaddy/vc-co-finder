@@ -176,4 +176,21 @@ describe('ActiveFilterChips', () => {
     expect(call.sectors).toEqual(['ai']);
     expect(call.page).toBe(1);
   });
+
+  it('renders each chip with filter-chip variant (Phase 3.1 Wave 4)', async () => {
+    currentState = {
+      ...DEFAULT_STATE,
+      sectors: ['fintech', 'ai'],
+      stage: ['series_a'],
+    };
+    const { ActiveFilterChips } = await import(
+      '@/components/search/ActiveFilterChips'
+    );
+    const { container } = render(withIntl(<ActiveFilterChips />));
+    const badges = container.querySelectorAll('[data-slot="badge"]');
+    expect(badges.length).toBeGreaterThan(0);
+    for (const b of Array.from(badges)) {
+      expect(b.className).toMatch(/var\(--foreground\)|filter-chip/);
+    }
+  });
 });

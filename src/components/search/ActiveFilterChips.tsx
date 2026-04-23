@@ -2,7 +2,6 @@
 
 import { useTranslations } from 'next-intl';
 import { useQueryStates } from 'nuqs';
-import { X } from 'lucide-react';
 import { searchParsers } from '@/lib/search/query-params';
 import { stageLabel } from '@/lib/format/stage';
 import { formatKRW } from '@/lib/format/currency';
@@ -218,18 +217,12 @@ export function ActiveFilterChips() {
       {chips.map((c) => (
         <li key={c.key}>
           <Badge
-            variant="secondary"
-            className="inline-flex items-center gap-1"
+            variant="filter-chip"
+            dismissible
+            onDismiss={c.remove}
+            dismissAriaLabel={t('chip.remove', { label: c.label })}
           >
-            <span>{c.label}</span>
-            <button
-              type="button"
-              aria-label={t('chip.remove', { label: c.label })}
-              onClick={c.remove}
-              className="inline-flex h-4 w-4 items-center justify-center rounded-full hover:bg-muted-foreground/20"
-            >
-              <X className="h-3 w-3" />
-            </button>
+            {c.label}
           </Badge>
         </li>
       ))}
