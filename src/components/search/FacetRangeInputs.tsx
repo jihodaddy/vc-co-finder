@@ -6,6 +6,7 @@ import { useQueryStates } from 'nuqs';
 import { searchParsers } from '@/lib/search/query-params';
 import { parseKRW } from '@/lib/format/parseKRW';
 import { Input } from '@/components/ui/input';
+import { Slider } from '@/components/ui/slider';
 
 /**
  * UI-SPEC §Range facet UX — funding (`parseKRW`-aware) + founded (year).
@@ -36,6 +37,14 @@ function parseRange(raw: string): { min: string; max: string } {
   return { min: a, max: b };
 }
 
+// Slider domain per 03.1-04 Plan:
+//  - funding: 0 원 ~ 1조 원 (amount_minor) with 1억 step — matches Phase 3
+//    synthetic corpus observed max; values beyond 1조 are out-of-band but the
+//    text input retains full precision.
+//  - founded: 1970 ~ current year, 1-year step.
+const MAX_FUNDING = 1_000_000_000_000; // 1조 in amount_minor
+const MIN_YEAR = 1970;
+
 export function FacetRangeInputs({ paramKey }: Props) {
   const t = useTranslations('search');
   const [query, setQuery] = useQueryStates(searchParsers, { shallow: false });
@@ -43,6 +52,39 @@ export function FacetRangeInputs({ paramKey }: Props) {
   const [minTxt, setMinTxt] = useState(min);
   const [maxTxt, setMaxTxt] = useState(max);
   const [invalid, setInvalid] = useState(false);
+
+  const MAX_YEAR = new Date().getFullYear();
+  const domainMin = paramKey === 'funding' ? 0 : MIN_YEAR;
+  const domainMax = paramKey === 'funding' ? MAX_FUNDING : MAX_YEAR;
+  const step = paramKey === 'funding' ? 100_000_000 : 1;
+
+  const sliderMin = (() => {
+    if (!minTxt.trim()) return domainMin;
+    if (paramKey === 'funding') {
+      const p = parseKRW(minTxt);
+      if (p === null) return domainMin;
+      const n = Number(p);
+      return Math.max(Math.min(n, domainMax), domainMin);
+    }
+    const n = Number.parseInt(minTxt, 10);
+    return Number.isFinite(n)
+      ? Math.max(Math.min(n, domainMax), domainMin)
+      : domainMin;
+  })();
+
+  const sliderMax = (() => {
+    if (!maxTxt.trim()) return domainMax;
+    if (paramKey === 'funding') {
+      const p = parseKRW(maxTxt);
+      if (p === null) return domainMax;
+      const n = Number(p);
+      return Math.max(Math.min(n, domainMax), domainMin);
+    }
+    const n = Number.parseInt(maxTxt, 10);
+    return Number.isFinite(n)
+      ? Math.max(Math.min(n, domainMax), domainMin)
+      : domainMax;
+  })();
 
   const commit = useCallback(() => {
     let minVal = '';
@@ -86,37 +128,52 @@ export function FacetRangeInputs({ paramKey }: Props) {
   const inputMode = paramKey === 'funding' ? 'decimal' : 'numeric';
 
   return (
-    <div className="flex gap-2">
-      <Input
-        type="text"
-        inputMode={inputMode}
-        placeholder={t('range.from')}
-        aria-invalid={invalid}
-        value={minTxt}
-        onChange={(e) => setMinTxt(e.target.value)}
-        onBlur={commit}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            commit();
-          }
+    <div className="flex flex-col gap-4">
+      <Slider
+        value={[sliderMin, sliderMax]}
+        min={domainMin}
+        max={domainMax}
+        step={step}
+        onValueChange={([mn, mx]) => {
+          setMinTxt(String(mn));
+          setMaxTxt(String(mx));
         }}
+        onValueCommit={() => commit()}
+        aria-label={t(`facet.${paramKey}.label`)}
+        className="py-2"
       />
-      <Input
-        type="text"
-        inputMode={inputMode}
-        placeholder={t('range.to')}
-        aria-invalid={invalid}
-        value={maxTxt}
-        onChange={(e) => setMaxTxt(e.target.value)}
-        onBlur={commit}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            commit();
-          }
-        }}
-      />
+      <div className="flex gap-2">
+        <Input
+          type="text"
+          inputMode={inputMode}
+          placeholder={t('range.from')}
+          aria-invalid={invalid}
+          value={minTxt}
+          onChange={(e) => setMinTxt(e.target.value)}
+          onBlur={commit}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              commit();
+            }
+          }}
+        />
+        <Input
+          type="text"
+          inputMode={inputMode}
+          placeholder={t('range.to')}
+          aria-invalid={invalid}
+          value={maxTxt}
+          onChange={(e) => setMaxTxt(e.target.value)}
+          onBlur={commit}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              commit();
+            }
+          }}
+        />
+      </div>
     </div>
   );
 }

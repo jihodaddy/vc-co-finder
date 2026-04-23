@@ -157,4 +157,32 @@ describe('FacetRangeInputs (funding)', () => {
     const call = mockSetQuery.mock.calls.at(-1)![0];
     expect(call.founded).toBe('2020-');
   });
+
+  it('renders a Slider alongside text inputs (Phase 3.1 Wave 4)', async () => {
+    const { FacetRangeInputs } = await import(
+      '@/components/search/FacetRangeInputs'
+    );
+    const { container, getAllByRole } = render(
+      withIntl(<FacetRangeInputs paramKey="funding" />),
+    );
+    const sliders = getAllByRole('slider');
+    expect(sliders.length).toBeGreaterThanOrEqual(2); // dual-thumb range
+    // Text inputs are still present alongside the slider.
+    expect(container.querySelectorAll('input').length).toBe(2);
+  });
+
+  it('slider for founded uses 1970 to currentYear domain (Phase 3.1 Wave 4)', async () => {
+    const { FacetRangeInputs } = await import(
+      '@/components/search/FacetRangeInputs'
+    );
+    const { getAllByRole } = render(
+      withIntl(<FacetRangeInputs paramKey="founded" />),
+    );
+    const sliders = getAllByRole('slider');
+    const maxThumb = sliders[sliders.length - 1];
+    expect(Number(maxThumb.getAttribute('aria-valuemax'))).toBe(
+      new Date().getFullYear(),
+    );
+    expect(Number(maxThumb.getAttribute('aria-valuemin'))).toBe(1970);
+  });
 });
