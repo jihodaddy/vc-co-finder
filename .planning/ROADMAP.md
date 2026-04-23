@@ -117,6 +117,16 @@
 
 ---
 
+### Phase 03.1: Design system adoption — VC·Finder brand language (cream/ink/lime), Pretendard + Geist Mono, Sparkline/Delta/LogoTile primitives, DESIGN.md as source of truth, rollout across landing/search/profile routes (INSERTED)
+
+**Goal:** [Urgent work - to be planned]
+**Requirements**: TBD
+**Depends on:** Phase 3
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd-plan-phase 03.1 to break down)
+
 ### Phase 4a: DART ETL + Staging→Review→Publish
 
 **Goal**: An automated DART ETL pipeline runs on a daily GitHub-Actions-triggered Fly.io worker, pulls financial statements + executive info for 외감 startups, lands rows in `staging.*`, reconciles `corp_code → 사업자등록번호 → company_id` identities, and is ready for admin approval (Phase 4b) before promoting to canonical tables with `revalidateTag` cache invalidation.
