@@ -4,29 +4,52 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --radius: 0.625rem;
+  /* Brand semantic tokens — D-01.1..D-01.4 (hex verbatim from .design-import/ui.jsx TOKENS) */
+  --background: #FBF9F4;           /* cream */
+  --foreground: #14120E;           /* ink */
+  --card: #FFFFFF;
+  --card-foreground: #14120E;
+  --popover: #FFFFFF;
+  --popover-foreground: #14120E;
+  --primary: #CFEF3E;              /* lime — signature accent (D-01.1) */
+  --primary-foreground: #14120E;   /* ink-on-lime (WCAG AA 10.8:1) */
+  --secondary: #F4F0E6;            /* creamDeep */
+  --secondary-foreground: #14120E;
+  --muted: #F4F0E6;
+  --muted-foreground: #78726A;     /* inkMute */
+  --accent: #F4F0E6;
+  --accent-foreground: #14120E;
+  --destructive: #FFB5A0;          /* coral (D-01.3) */
+  --destructive-foreground: #14120E;
+  --border: rgba(20, 18, 14, 0.10);
+  --input: rgba(20, 18, 14, 0.10);
+  --ring: #CFEF3E;                 /* lime halo (D-01.4) */
+
+  /* Utility tokens — D-01.5 */
+  --radius: 7px;                   /* keep so shadcn-derived calc() still works */
+  --radius-sm: 4px;
+  --radius-md: 7px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(20, 18, 14, 0.06);
+  --shadow-md: 0 12px 32px -12px rgba(20, 18, 14, 0.18);
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Chart palette — D-02.1 (Sparkline default stroke + Phase 6 multi-series) */
+  --chart-1: #14120E;              /* ink — primary metric */
+  --chart-2: #CFEF3E;              /* lime — positive highlight */
+  --chart-3: #93C7FF;              /* sky — secondary series */
+  --chart-4: #FFB5A0;              /* coral — negative/alert */
+  --chart-5: #D4C5FF;              /* lilac — tertiary */
 }
 
 .dark {
+  /* v2 deferred per D-01.6 — keep block so shadcn primitives don't break,
+     but do NOT author brand-consistent values. Leaving original OKLCH
+     placeholders is acceptable; documented as v2 in DESIGN.md. */
   --background: oklch(0.129 0.042 264.695);
   --foreground: oklch(0.984 0.003 247.858);
   --card: oklch(0.208 0.042 265.755);
@@ -49,6 +72,10 @@
 }
 
 @theme inline {
+  /* RESEARCH Pitfall 1 — `@theme inline` is REQUIRED (not plain `@theme`)
+     because next/font CSS variables resolve at runtime. Plain @theme would
+     try to inline them at build time and font-sans/font-mono would fall
+     back to system fonts. */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -68,10 +95,23 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: calc(var(--radius-lg) + 4px);
+
+  /* Font bindings — consumed by Tailwind's font-sans / font-mono utilities.
+     --font-pretendard / --font-geist / --font-geist-mono are injected onto
+     <html> by Task 3's next/font wiring. D-04.1..D-04.2. */
+  --font-sans: var(--font-pretendard);
+  --font-mono: var(--font-geist-mono);
 }
 
 @layer base {
