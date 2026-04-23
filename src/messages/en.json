@@ -43,7 +43,14 @@
         "body": ""
       }
     },
-    "status": ""
+    "status": "",
+    "hero3_1": {
+      "eyebrow": "",
+      "statusSuffix": "",
+      "headline": "",
+      "tagline": "",
+      "ctaPrimary": ""
+    }
   },
   "header": {
     "nav": {
