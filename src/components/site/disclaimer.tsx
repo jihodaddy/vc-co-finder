@@ -14,7 +14,7 @@ import { useTranslations } from 'next-intl';
 export function Disclaimer() {
   const t = useTranslations('footer');
   return (
-    <p role="note" className="text-xs text-neutral-600 leading-relaxed">
+    <p role="note" className="text-xs text-muted-foreground leading-relaxed">
       {t('disclaimerText')}
     </p>
   );

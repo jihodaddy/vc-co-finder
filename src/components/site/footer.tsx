@@ -20,10 +20,10 @@ export async function Footer() {
   ]);
   const year = new Date().getFullYear();
   return (
-    <footer className="mt-16 border-t">
+    <footer className="mt-16 border-t border-[color:var(--border)] bg-[color:var(--background)]">
       <div className="mx-auto max-w-6xl px-4 py-8 flex flex-col gap-4">
         <Disclaimer />
-        <nav className="flex flex-wrap gap-4 text-sm">
+        <nav className="flex flex-wrap gap-4 text-sm text-muted-foreground">
           <Link href={`/${locale}/sources`}>{t('links.sources')}</Link>
           <Link href={`/${locale}/privacy`}>{t('links.privacy')}</Link>
           <Link href={`/${locale}/terms`}>{t('links.terms')}</Link>
@@ -37,7 +37,7 @@ export async function Footer() {
             {t('links.dsar')}
           </Link>
         </nav>
-        <p className="text-xs text-neutral-500">
+        <p className="text-xs text-muted-foreground">
           {t('copyright', { year })} · {t('version')}
         </p>
       </div>
