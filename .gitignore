@@ -55,3 +55,4 @@ supabase/.branches/
 
 # GSD / Claude agent scratch — worktree checkouts are ephemeral
 .claude/worktrees/
+.design-import/
