@@ -38,7 +38,7 @@ describe('SourceBadge', () => {
     expect(container.textContent).toMatch(/업데이트/);
   });
 
-  it('embeds freshness dot with FRESHNESS_DOT_CLASS for fresh level', async () => {
+  it('embeds freshness dot with brand-aligned color class for fresh level (Phase 3.1 Wave 6)', async () => {
     const node = await SourceBadge({
       meta: {
         sourceId: 'ds-1',
@@ -53,7 +53,9 @@ describe('SourceBadge', () => {
     const { container } = render(node as any);
     const dot = container.querySelector('span[aria-hidden="true"]');
     expect(dot).not.toBeNull();
-    expect(dot!.className).toMatch(/text-green-600/);
+    // brand Delta-up green, not stock text-green-600
+    expect(dot!.className).toMatch(/text-\[#0C8A3A\]/);
+    expect(dot!.className).not.toMatch(/text-green-\d/);
     expect(dot!.className).toMatch(/h-1\.5 w-1\.5/);
   });
 
