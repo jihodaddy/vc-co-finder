@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { routing } from '@/i18n/routing';
+import { pretendard, geistSans, geistMono } from '@/app/fonts';
 import '../globals.css';
 
 export const metadata = {
@@ -45,7 +46,10 @@ export default async function LocaleLayout({
   }
   const messages = await getMessages({ locale });
   return (
-    <html lang={locale}>
+    <html
+      lang={locale}
+      className={`${pretendard.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <NuqsAdapter>{children}</NuqsAdapter>
