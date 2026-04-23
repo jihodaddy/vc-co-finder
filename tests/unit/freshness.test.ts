@@ -19,17 +19,18 @@ describe('freshnessLevel', () => {
     expect(freshnessLevel(subDays(NOW, 1825).toISOString(), NOW)).toBe('expired'));
 });
 
-describe('FRESHNESS_DOT_CLASS', () => {
-  it('fresh level uses text-green-600 + dark variant', () => {
-    expect(FRESHNESS_DOT_CLASS.fresh).toMatch(/text-green-600/);
-    expect(FRESHNESS_DOT_CLASS.fresh).toMatch(/dark:text-green-500/);
+describe('FRESHNESS_DOT_CLASS (Phase 3.1 Wave 6 brand scrub)', () => {
+  it('fresh level uses brand Delta-up green #0C8A3A', () => {
+    expect(FRESHNESS_DOT_CLASS.fresh).toBe('text-[#0C8A3A]');
   });
-  it('stale level uses text-amber-500 + dark variant', () => {
-    expect(FRESHNESS_DOT_CLASS.stale).toMatch(/text-amber-500/);
-    expect(FRESHNESS_DOT_CLASS.stale).toMatch(/dark:text-amber-400/);
+  it('stale level uses brand dark goldenrod #B8860B', () => {
+    expect(FRESHNESS_DOT_CLASS.stale).toBe('text-[#B8860B]');
   });
-  it('expired level uses text-red-600 + dark variant', () => {
-    expect(FRESHNESS_DOT_CLASS.expired).toMatch(/text-red-600/);
-    expect(FRESHNESS_DOT_CLASS.expired).toMatch(/dark:text-red-500/);
+  it('expired level uses brand Delta-down coral-red #C03A3A', () => {
+    expect(FRESHNESS_DOT_CLASS.expired).toBe('text-[#C03A3A]');
+  });
+  it('no stock-color Tailwind classes leak into freshness palette', () => {
+    const values = Object.values(FRESHNESS_DOT_CLASS).join(' ');
+    expect(values).not.toMatch(/text-(green|red|yellow|amber|blue|slate|neutral|gray|zinc|stone)-\d/);
   });
 });

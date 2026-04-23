@@ -31,12 +31,24 @@ export function freshnessLevel(
 }
 
 /**
- * Tailwind class per freshness level. Exact classes from UI-SPEC §Color
- * Freshness semantic palette. These three values live ONLY here —
- * no other component may hardcode green-600 / amber-500 / red-600.
+ * Tailwind class per freshness level.
+ *
+ * Phase 3.1 Wave 6 — brand-aligned freshness dot colors per DESIGN.md §1.2
+ * Chart Palette + .planning/phases/03.1-.../03.1-CONTEXT.md D-03.1 step 6.
+ * These three hex values live ONLY here — no other component may hardcode
+ * the freshness palette.
+ *
+ * fresh   (≤30d)  → #0C8A3A (Delta-up green; elevated from primitive-internal
+ *                   to shared freshness signal per Phase 3.1 decision)
+ * stale   (≤180d) → #B8860B (dark goldenrod; neutral warm tone that sits
+ *                   cleanly on cream without competing with lime accent)
+ * expired (>180d) → #C03A3A (Delta-down coral-red; elevated for negative
+ *                   freshness signal. --destructive is #FFB5A0 coral which
+ *                   is too light for a 1.5px dot on cream — AA contrast
+ *                   requires the darker #C03A3A variant.)
  */
 export const FRESHNESS_DOT_CLASS: Record<FreshnessLevel, string> = {
-  fresh: 'text-green-600 dark:text-green-500',
-  stale: 'text-amber-500 dark:text-amber-400',
-  expired: 'text-red-600 dark:text-red-500',
+  fresh: 'text-[#0C8A3A]',
+  stale: 'text-[#B8860B]',
+  expired: 'text-[#C03A3A]',
 };
