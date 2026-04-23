@@ -122,7 +122,7 @@
 **Goal:** Replace shadcn slate defaults with the VC·Finder brand design system (cream/ink/lime + coral/sky/lilac chart palette, Pretendard Variable + Geist + Geist Mono typography), add 3 missing shadcn primitives (chart/slider/avatar) plus 3 brand-domain primitives (Sparkline/Delta/LogoTile), extend Badge with a filter-chip variant, and roll the tokens out across the shell + /search + / landing + /companies/[slug]. Publish .planning/DESIGN.md as project-level source of truth.
 **Requirements**: none (design-systemization phase — all work derived from CONTEXT D-01..D-05 locked decisions)
 **Depends on:** Phase 3
-**Plans:** 5/6 plans executed
+**Plans:** 6/6 plans complete
 
 Plans:
 - [x] 03.1-01-PLAN.md — [BLOCKING] Foundation: globals.css hex rewrite + @theme inline font binding + components.json baseColor=neutral + next/font (Pretendard local + Geist + Geist_Mono) + DESIGN.md authoring + Pretendard woff2 asset (wave 1)
@@ -130,7 +130,7 @@ Plans:
 - [x] 03.1-03-PLAN.md — Shell: header brand wordmark with lime dot + Geist font + footer/disclaimer token migration off text-neutral-* (wave 2, parallel with 03.1-02)
 - [x] 03.1-04-PLAN.md — /search rework: ActiveFilterChips (Badge filter-chip) + FacetRangeInputs (Slider overlay) + FacetGroup (Geist Mono meta-label headers) + ResultsHeader (live-count pulse) + SearchInput (top-bar shadow) + ko.json liveLabel key (wave 3)
 - [x] 03.1-05-PLAN.md — / landing: minimal brand hero (wordmark + headline + tagline + 검색 시작 CTA → /search + LIVE status pill) + landing.hero3_1 i18n namespace + smoke test (wave 3, parallel with 03.1-04)
-- [ ] 03.1-06-PLAN.md — /companies/[slug] cleanup: FRESHNESS_DOT_CLASS brand-aligned hex (#0C8A3A / #B8860B / #C03A3A) + profile/* audit scrub + test updates (wave 4, can start after 03.1-03)
+- [x] 03.1-06-PLAN.md — /companies/[slug] cleanup: FRESHNESS_DOT_CLASS brand-aligned hex (#0C8A3A / #B8860B / #C03A3A) + profile/* audit scrub + test updates (wave 4, can start after 03.1-03)
 
 ### Phase 4a: DART ETL + Staging→Review→Publish
 
