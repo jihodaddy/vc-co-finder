@@ -16,6 +16,7 @@
 
 - [x] **기업별 투자 라운드 히스토리** (라운드 단계, 금액, 일자, 리드·참여 투자자) — Validated in Phase 2 (Read-Only Profiles + Manual Seed). `/ko/companies/[slug]` 라우트가 토스 등 15개 시드 기업에서 11-stage taxonomy + 한국 통화 포맷(억/조) + 출처 배지 + 신선도 도트를 렌더. Phase 3 SRCH-13 콜드-스타트 세트로 기능 확정.
 - [x] **다중 조건 패시트 필터** — 섹터, 라운드 단계, 지역, 직원 수, 누적 투자액, 설립연도 동시 적용. Validated in Phase 3 (Faceted Search Postgres Path). `/ko/search` 라우트가 nuqs URL 상태·pgroonga 한국어 FTS·denormalized 컬럼 조합으로 5,016행 데이터셋에서 p95 = 416.5ms (<1s 목표) 달성. SRCH-13 콜드스타트 코퍼스(토스/당근/쿠팡 등 7종) 8/8 canonical slug 해석 성공. 375px 모바일 반응형 + 칩/clearAll + 카드/테이블 뷰 + 정렬/페이징 모두 확인.
+- [x] **VC·Finder 디자인 시스템** (cream/ink/lime 브랜드 팔레트 + Pretendard + Geist Mono + Sparkline/Delta/LogoTile 프리미티브 + `.planning/DESIGN.md`). Validated in Phase 3.1 (Design System Adoption). shadcn-first 딜리버리로 chart/slider/avatar 추가, Badge `filter-chip` variant 확장, tailwind v4 `@theme inline` 기반 17개 brand semantic token + utility tokens(radius/shadow/fw)로 전 라우트 자동 리브랜딩. `/` landing minimal hero + `/search` 시각 재작업 + `/companies/[slug]` freshness dot 브랜드 hex 적용 완료.
 
 ### Active
 
@@ -101,4 +102,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-23 after Phase 3 (Faceted Search Postgres Path) completion*
+*Last updated: 2026-04-23 after Phase 3.1 (Design System Adoption — VC·Finder brand language) completion*
