@@ -1,5 +1,6 @@
 'use client';
 
+import { useId } from 'react';
 import { Area, AreaChart } from 'recharts';
 import {
   ChartContainer,
@@ -35,6 +36,7 @@ export function Sparkline({
   height = 36,
   className,
 }: SparklineProps) {
+  const gradientId = `spark-fill-${useId().replace(/:/g, '')}`;
   const chartData: Point[] = data.map((v) => ({ v }));
   const config = {
     v: { color, label: 'Trend' },
@@ -51,7 +53,7 @@ export function Sparkline({
         margin={{ top: 2, right: 0, bottom: 2, left: 0 }}
       >
         <defs>
-          <linearGradient id="spark-fill" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="var(--color-v)" stopOpacity="0.25" />
             <stop offset="100%" stopColor="var(--color-v)" stopOpacity="0" />
           </linearGradient>
@@ -61,7 +63,7 @@ export function Sparkline({
           dataKey="v"
           stroke="var(--color-v)"
           strokeWidth={1.5}
-          fill="url(#spark-fill)"
+          fill={`url(#${gradientId})`}
         />
       </AreaChart>
     </ChartContainer>

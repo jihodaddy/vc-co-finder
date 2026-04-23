@@ -190,11 +190,19 @@
     "chip": {
       "remove": "",
       "clearAll": "",
-      "activeLabel": ""
+      "activeLabel": "",
+      "range": {
+        "between": "",
+        "atLeast": "",
+        "atMost": "",
+        "foundedAfter": "",
+        "foundedBefore": ""
+      }
     },
     "results": {
       "count": "",
       "liveRegion": "",
+      "liveLabel": "",
       "sortBy": "",
       "view": {
         "table": "",
