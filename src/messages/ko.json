@@ -194,6 +194,7 @@
     },
     "results": {
       "count": "{count}개 기업",
+      "liveLabel": "실시간",
       "liveRegion": "{count}개 기업이 표시됩니다",
       "sortBy": "정렬",
       "view": {

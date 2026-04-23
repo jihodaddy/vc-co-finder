@@ -26,7 +26,7 @@ export function FacetGroup({ labelKey, children, withSeparator = true }: Props) 
   return (
     <div className="flex flex-col gap-3">
       <fieldset className="border-0 p-0 m-0">
-        <legend className="text-xl font-semibold text-foreground mb-3">
+        <legend className="font-mono uppercase text-[11px] tracking-[0.3em] text-muted-foreground mb-2">
           {t(`facet.${labelKey}.label`)}
         </legend>
         <div className="flex flex-col gap-2">{children}</div>

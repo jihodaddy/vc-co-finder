@@ -89,7 +89,7 @@ export function SearchInput() {
   return (
     <Popover open={showPopover} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <div className="relative">
+        <div className="relative rounded-[14px] border border-[color:var(--border)] bg-[color:var(--card)] shadow-[0_2px_8px_rgba(20,18,14,0.04),0_20px_40px_-20px_rgba(20,18,14,0.12)] focus-within:ring-2 focus-within:ring-[color:var(--primary)]/25 transition-shadow">
           <Search
             aria-hidden
             className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none"
@@ -106,7 +106,7 @@ export function SearchInput() {
             onKeyDown={(e) => {
               if (e.key === 'Escape') setOpen(false);
             }}
-            className="pl-9"
+            className="pl-9 border-0 bg-transparent shadow-none focus-visible:ring-0"
           />
         </div>
       </PopoverTrigger>

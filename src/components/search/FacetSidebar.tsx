@@ -57,7 +57,7 @@ export function FacetSidebar({
   return (
     <aside
       aria-label={t('drawer.heading')}
-      className="sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto w-72 min-w-[280px] max-w-[320px]"
+      className="sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto w-72 min-w-[280px] max-w-[320px] border-r border-[color:var(--border)] pr-4"
     >
       {searchInputSlot && (
         <div className="pb-4 border-b mb-4">{searchInputSlot}</div>

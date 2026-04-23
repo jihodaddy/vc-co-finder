@@ -19,9 +19,18 @@ export function ResultsHeader({ total }: Props) {
   const t = useTranslations('search');
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-      <p className="text-xl font-semibold">
-        {t('results.count', { count: total })}
-      </p>
+      <div className="flex items-center gap-2">
+        <span aria-hidden className="relative inline-flex h-2 w-2">
+          <span className="absolute inline-flex h-full w-full rounded-full bg-[color:var(--primary)] opacity-75 animate-ping" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-[color:var(--primary)]" />
+        </span>
+        <span className="font-mono uppercase text-[11px] tracking-[0.3em] text-muted-foreground">
+          {t('results.liveLabel')}
+        </span>
+        <p className="text-xl font-semibold tabular-nums">
+          {t('results.count', { count: total })}
+        </p>
+      </div>
       <div className="flex items-center gap-2">
         <SortTrigger />
         <ViewToggle />
